@@ -26,42 +26,6 @@ app.get('/webhook/', function (req, res) {
 	res.send('Error, wrong token')
 })
 
-// Spin up the server
-app.listen(app.get('port'), function() {
-	console.log('running on port', app.get('port'))
-})
-
-
-
-'use strict'
-
-const express = require('express')
-const bodyParser = require('body-parser')
-const request = require('request')
-const app = express()
-
-app.set('port', (process.env.PORT || 5000))
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
-
-// parse application/json
-app.use(bodyParser.json())
-
-// index
-app.get('/', function (req, res) {
-    res.send('hello world i am a secret bot')
-})
-
-// for facebook verification
-app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-        res.send(req.query['hub.challenge'])
-    } else {
-        res.send('Error, wrong token')
-    }
-})
-
 // to post data
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
