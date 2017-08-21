@@ -45,7 +45,11 @@ app.post('/webhook/', function (req, res) {
         }
         if (event.postback) {
             let text = JSON.stringify(event.postback)
-            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
+            if(event.postback.payload === "GET_STARTED_PAYLOAD") {
+              greetingMessage(sender);
+              continue
+            }
             continue
         }
     }
@@ -125,6 +129,66 @@ function sendGenericMessage(sender) {
         }
     })
 }
+
+function greetingMessage(sender) {
+	let messageData = {
+		"greeting":[{
+	      "locale":"js_JP",
+	      "text":"Hello, {{user_full_name}}!"
+	    }, {
+	      "locale":"ja_JP",
+	      "text":"こ以降にpromiseで関数を追加するよ"
+	    }]
+	}
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+				console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+				console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // spin spin sugar
 app.listen(app.get('port'), function() {
