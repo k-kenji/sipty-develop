@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 // Index route
-app.get('/index.html', function (req, res) {
-	res.send('index.html')
+app.get('/', function (req, res) {
+	res.send('テスト')
 })
 
 // for Facebook verification
