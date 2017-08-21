@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
-	res.send('/index.html')
+	res.send('index.html')
 })
 
 // for Facebook verification
