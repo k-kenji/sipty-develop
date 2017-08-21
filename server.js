@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 // Index route
-app.get('/', function (req, res) {
+app.get('/index.html', function (req, res) {
 	res.send('index.html')
 })
 
