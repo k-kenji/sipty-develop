@@ -132,13 +132,10 @@ function sendGenericMessage(sender) {
 
 function greetingMessage(sender) {
 	let messageData = {
-		"greeting":[{
-	      "locale":"js_JP",
-	      "text":"Hello, {{user_full_name}}!"
-	    }, {
-	      "locale":"ja_JP",
-	      "text":"こ以降にpromiseで関数を追加するよ"
-	    }]
+		"setting_type":"greeting",
+	  "greeting":{
+	    "text":"あいさつメッセージですよ",
+	  }
 	}
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
