@@ -31,7 +31,7 @@ app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
         let event = req.body.entry[0].messaging[i]
-        console.log("event: ", event);
+        console.log("event: ", event); // eventにはwebhookで受け取ったJSONデータ
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
@@ -47,7 +47,7 @@ app.post('/webhook/', function (req, res) {
             let text = JSON.stringify(event.postback)
             // sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
             if(event.postback.payload === "GET_STARTED_PAYLOAD") {
-              // sendTextMessage(sender, text);
+              firstLoginMessage(sender); // この関数のあとでpromiseを実行
               console.log("psotbackまで到達");
               continue
             }
@@ -130,6 +130,58 @@ function sendGenericMessage(sender) {
         }
     })
 }
+
+function firstLoginMessage(sender) {
+  let messageData = {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+           {
+            "title":"Welcome to sipty",
+            "image_url":"http://www.sipty.jp/img/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202017-08-23%2016.34.48.png",
+            "subtitle":"Facebookでログイン、もしくは使い方を見てみましょう！",
+            "default_action": {
+              "type": "web_url",
+              "url": "http://www.sipty.jp/",
+              "messenger_extensions": false,
+              "webview_height_ratio": "tall",
+            },
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"http://www.sipty.jp/",
+                "title":"View Website"
+              },{
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"help"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  request({
+      url: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: {access_token:token},
+      method: 'POST',
+      json: {
+          recipient: {id:sender},
+          message: messageData,
+      }
+  }, function(error, response, body) {
+      if (error) {
+          console.log('Error sending messages: ', error)
+      } else if (response.body.error) {
+          console.log('Error: ', response.body.error)
+      }
+  })
+}
+
+
 
 // function greetingMessage(sender) {
 //   let messageData = {
