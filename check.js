@@ -26,11 +26,18 @@ curl -X GET "https://graph.facebook.com/v2.6/1320267861435475?fields=first_name,
 curl -X POST -H "Content-Type: application/json" -d '{
   "greeting":[
     {
-      "locale":"js_JP",
       "text":"Hello, {{user_full_name}}!"
     }, {
-      "locale":"ja_JP",
-      "text":"Timeless apparel for the masses."
+      "text":"こ以降にpromiseで関数を追加するよ"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=PAGE_ACCESS_TOKEN"
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAAHFsX2ZAN5kBADYhfaxYiGQA2nSzJviZBOXfRlCgI3SsmU8N36ZALJ4hZA78jioYjJvtq0C8QGHNyrPcpnsEl8grrCEseZCQQsOFuPbLmhzG7NyZCQTRsaLGQHTNN1PMGHWLalzJpNMxDlpufL57tZAJ0b3n81xS2yMwoFt0bX3MOuJY4IEkPZA"
+
+
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "setting_type":"greeting",
+  "greeting":{
+    "text":"Timeless apparel for the masses."
+  }
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=PAGE_ACCESS_TOKEN"

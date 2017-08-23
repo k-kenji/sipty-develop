@@ -134,10 +134,8 @@ function greetingMessage(sender) {
   let messageData = {
     "greeting":[
     {
-      "locale":"js_JP",
       "text":"Hello, {{user_full_name}}!"
     }, {
-      "locale":"ja_JP",
       "text":"こ以降にpromiseで関数を追加するよ"
     }
   ]
@@ -148,7 +146,7 @@ function greetingMessage(sender) {
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
-			greeting: messageData,
+			message: messageData,
 		}
 	}, function(error, response, body) {
 		if (error) {
