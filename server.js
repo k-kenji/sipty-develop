@@ -47,7 +47,7 @@ app.post('/webhook/', function (req, res) {
             let text = JSON.stringify(event.postback)
             // sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
             if(event.postback.payload === "GET_STARTED_PAYLOAD") {
-              sendTextMessage(sender, text);
+              // sendTextMessage(sender, text);
               console.log("psotbackまで到達");
               continue
             }
