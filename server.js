@@ -131,24 +131,24 @@ function sendGenericMessage(sender) {
 }
 
 function greetingMessage(sender) {
-	let messageData = {
+  let messageData = {
     "greeting":[
-      {
-        "locale":"js_JP",
-        "text":"Hello, {{user_full_name}}!"
-      }, {
-        "locale":"ja_JP",
-        "text":"こ以降にpromiseで関数を追加するよ"
-      }
-    ]
-	}
+    {
+      "locale":"js_JP",
+      "text":"Hello, {{user_full_name}}!"
+    }, {
+      "locale":"ja_JP",
+      "text":"こ以降にpromiseで関数を追加するよ"
+    }
+  ]
+  }
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
-			message: messageData,
+			greeting: messageData,
 		}
 	}, function(error, response, body) {
 		if (error) {
