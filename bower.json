@@ -1,0 +1,21 @@
+{
+  "name": "sipty-develop",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "kenji <dgff2079@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/k-kenji/sipty-develop",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7"
+  }
+}

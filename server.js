@@ -6,6 +6,10 @@ const request = require('request')
 const app = express()
 
 app.set('port', (process.env.PORT || 5000))
+app.set('views', './views'); // テンプレートエンジンをEJSに設定
+app.set('view engine', 'ejs'); // テンプレートエンジンをEJSに設定
+
+app.use(express.static(__dirname + '/public')); // 静的ファイルを公開
 
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
@@ -181,36 +185,9 @@ function firstLoginMessage(sender) {
   })
 }
 
+function TohelpPage(postback) {
 
-
-// function greetingMessage(sender) {
-//   let messageData = {
-//     "greeting":[
-//     {
-//       "text":"Hello, {{user_full_name}}!"
-//     }, {
-//       "text":"こ以降にpromiseで関数を追加するよ"
-//     }
-//   ]
-//   }
-// 	request({
-// 		url: 'https://graph.facebook.com/v2.6/me/messages',
-// 		qs: {access_token:token},
-// 		method: 'POST',
-// 		json: {
-// 			recipient: {id:sender},
-// 			message: messageData,
-// 		}
-// 	}, function(error, response, body) {
-// 		if (error) {
-// 				console.log('Error sending messages: ', error)
-// 		} else if (response.body.error) {
-// 				console.log('Error: ', response.body.error)
-// 		}
-// 	})
-// }
-
-
+}
 
 
 
