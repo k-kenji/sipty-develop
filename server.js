@@ -150,14 +150,14 @@ function firstLoginMessage(sender) {
             "subtitle":"Facebookでログイン、もしくは使い方を見てみましょう！",
             "default_action": {
               "type": "web_url",
-              "url": "http://www.sipty.jp/",
+              "url": "https://sipty-develop.herokuapp.com/",
               "messenger_extensions": false,
               "webview_height_ratio": "tall",
             },
             "buttons":[
               {
                 "type":"web_url",
-                "url":"http://www.sipty.jp/",
+                "url":"https://sipty-develop.herokuapp.com/",
                 "title":"View Website"
               },{
                 "type":"postback",
