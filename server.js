@@ -11,6 +11,8 @@ app.set('view engine', 'ejs'); // テンプレートエンジンをEJSに設定
 
 app.use(express.static(__dirname + '/public')); // 静的ファイルを公開
 
+app.use('/', require('./routes/index.js')); // ルーティング設定
+
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
 
