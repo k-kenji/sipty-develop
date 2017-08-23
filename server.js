@@ -9,7 +9,7 @@ app.set('port', (process.env.PORT || 5000))
 app.set('views', './views'); // テンプレートエンジンをEJSに設定
 app.set('view engine', 'ejs'); // テンプレートエンジンをEJSに設定
 
-app.use(express.static(__dirname + '/public')); // 静的ファイルを公開
+app.use(express.static(__dirname)); // 静的ファイルを公開
 
 app.use('/', require('./routes/index.js')); // ルーティング設定
 
