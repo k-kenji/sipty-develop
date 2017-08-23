@@ -47,7 +47,8 @@ app.post('/webhook/', function (req, res) {
             let text = JSON.stringify(event.postback)
             // sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
             if(event.postback.payload === "GET_STARTED_PAYLOAD") {
-              greetingMessage(sender);
+              sendTextMessage(sender, text);
+              console.log("psotbackまで到達");
               continue
             }
             continue
@@ -130,32 +131,32 @@ function sendGenericMessage(sender) {
     })
 }
 
-function greetingMessage(sender) {
-  let messageData = {
-    "greeting":[
-    {
-      "text":"Hello, {{user_full_name}}!"
-    }, {
-      "text":"こ以降にpromiseで関数を追加するよ"
-    }
-  ]
-  }
-	request({
-		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token:token},
-		method: 'POST',
-		json: {
-			recipient: {id:sender},
-			message: messageData,
-		}
-	}, function(error, response, body) {
-		if (error) {
-				console.log('Error sending messages: ', error)
-		} else if (response.body.error) {
-				console.log('Error: ', response.body.error)
-		}
-	})
-}
+// function greetingMessage(sender) {
+//   let messageData = {
+//     "greeting":[
+//     {
+//       "text":"Hello, {{user_full_name}}!"
+//     }, {
+//       "text":"こ以降にpromiseで関数を追加するよ"
+//     }
+//   ]
+//   }
+// 	request({
+// 		url: 'https://graph.facebook.com/v2.6/me/messages',
+// 		qs: {access_token:token},
+// 		method: 'POST',
+// 		json: {
+// 			recipient: {id:sender},
+// 			message: messageData,
+// 		}
+// 	}, function(error, response, body) {
+// 		if (error) {
+// 				console.log('Error sending messages: ', error)
+// 		} else if (response.body.error) {
+// 				console.log('Error: ', response.body.error)
+// 		}
+// 	})
+// }
 
 
 
