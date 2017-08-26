@@ -12,6 +12,7 @@ app.set('view engine', 'ejs'); // テンプレートエンジンをEJSに設定
 app.use(express.static(__dirname)); // 静的ファイルを公開
 
 app.use('/', require('./routes/index.js')); // ルーティング設定
+app.use('/facebook-login', require('./routes/facebook-login.js')); // ルーティング設定
 
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))

@@ -6,8 +6,4 @@ router.get('/', function (request, response) { // このURLpathが呼ばれる�
     response.render('index', { title: 'Sample Node.js', message: 'Hello there!' });
 });
 
-router.get('/login', function(request, response) {
-  response.render('login');
-})
-
 module.exports = router;
