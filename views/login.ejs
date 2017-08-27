@@ -18,6 +18,8 @@
       // Logged into your app and Facebook.
       testAPI();
       console.log("すでにログイン済");
+      var check = response.name;
+      console.log("テスト表示： " + check);
     } else {
       // The person is not logged into your app or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -99,7 +101,7 @@
 
 <div id="fb-root"></div>
 
-<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false">
+<div class="fb-login-button" scope="public_profile,email,user_friends" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false">
 </div>
 
 
