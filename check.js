@@ -22,6 +22,9 @@ curl -X GET "https://graph.facebook.com/v2.6/me/messenger_profile?fields=get_sta
 
 curl -X GET "https://graph.facebook.com/v2.6/1320267861435475?fields=email,first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAAHFsX2ZAN5kBALyBQjDuW7WEYaZBYnr9ImZCn8m6Gf9hCPqMoTENQ6ZA3ujiLeX6gzu7sAGKXdcKhzqYZCUwX4QKVpyRBZA32KYxWnChWhAB0t0oAbicA0gjV0bG9UDZAWS30hPuPc86cZCWdjl5G89lWsrtktXXkUctUV6cT8lVhOvLHWxlNxC"
 
+/{user-id}/permissions/{permission-name}
+
+curl -X GET "https://graph.facebook.com/v2.6/2052306201665083?fields=email,first_name,last_name,locale,timezone,gender&access_token=EAAHFsX2ZAN5kBALyBQjDuW7WEYaZBYnr9ImZCn8m6Gf9hCPqMoTENQ6ZA3ujiLeX6gzu7sAGKXdcKhzqYZCUwX4QKVpyRBZA32KYxWnChWhAB0t0oAbicA0gjV0bG9UDZAWS30hPuPc86cZCWdjl5G89lWsrtktXXkUctUV6cT8lVhOvLHWxlNxC"
 // あいさつボタン
 curl -X POST -H "Content-Type: application/json" -d '{
   "greeting":[
