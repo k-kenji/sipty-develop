@@ -18,8 +18,6 @@
       // Logged into your app and Facebook.
       testAPI();
       console.log("すでにログイン済");
-      var check = response.name;
-      console.log("テスト表示： " + check);
     } else {
       // The person is not logged into your app or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -33,6 +31,8 @@
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+      var check = response.name;
+      console.log("テスト表示： " + check);
     });
   }
 
