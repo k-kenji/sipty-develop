@@ -4,6 +4,21 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const firebase = require("firebase");
+
+// Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0",
+   authDomain: "sipty-f9d06.firebaseapp.com",
+   databaseURL: "https://sipty-f9d06.firebaseio.com",
+   projectId: "sipty-f9d06",
+   storageBucket: "",
+   messagingSenderId: "376113749242"
+ };
+ firebase.initializeApp(config);
+
+ // Get a reference to the database service
+  var database = firebase.database();
 
 app.set('port', (process.env.PORT || 5000))
 app.set('views', './views'); // テンプレートエンジンをEJSに設定
