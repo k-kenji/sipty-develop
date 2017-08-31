@@ -79,17 +79,29 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{ locale: 'ja_JP', fields: 'name, email' }, function(response) {
+    FB.api('/me',{ locale: 'ja_JP', fields: 'name, email, id' }, function(response) {
       console.log('Successful login for: ' + response.name);
+      var userid = response.id;
+      console.log("ユーザーID： " + userid);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         console.log(response);
     });
   }
 
+//   FB.api(
+//     "/{user-id}/friends",
+//     function (response) {
+//       if (response && !response.error) {
+//         /* handle the result */
+//       }
+//     }
+// );
+
   /* make the API call */
-function friendgetAPI() {
-  console.log("関数が実行されているかテスト");
+function set_DB_user_info() {
+  console.log("DBへのへの登録処理");
+
 }
 
 </script>

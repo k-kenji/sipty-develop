@@ -73,6 +73,10 @@ router.get('/login', function(request, response) {
     });
   }
 
+  // facebookログイン時に実行する処理
+  // 登録
+  // DBにユーザー情報をset（名前、メールアドレス、誕生日、性別、地域、ID）
+
 
 })
 
