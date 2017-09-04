@@ -27,9 +27,6 @@
    };
    firebase.initializeApp(config);
 
-   window.extAsyncInit = function() {
-    // the Messenger Extensions JS SDK is done loading
-
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -67,8 +64,6 @@
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
-      var check = response.name;
-      console.log("テスト表示： " + check);
     });
   }
 
@@ -114,7 +109,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{ locale: 'ja_JP', fields: 'name, email, id' }, function(response) {
+    FB.api('/me',{ locale: 'ja_JP', fields: 'name, email, id, picture' }, function(response) {
       console.log('Successful login for: ' + response.name);
       var userid = response.id;
       console.log("ユーザーID： " + userid); // 成功
@@ -132,7 +127,6 @@ function set_DB_user_info() {
   console.log("SPIDの確認");
 }
 
-}; // エクステンションSDK
 </script>
 
 <!--
