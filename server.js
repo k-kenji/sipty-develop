@@ -153,6 +153,8 @@ function sendGenericMessage(sender) {
     })
 }
 
+// SPidをDBに保存する
+//
 function firstLoginMessage(sender) {
   let messageData = {
     "attachment":{
