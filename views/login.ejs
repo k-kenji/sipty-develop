@@ -5,7 +5,20 @@
 <meta charset="UTF-8">
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
 <script>
+
+  // Initialize Firebase
+   var config = {
+     apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0",
+     authDomain: "sipty-f9d06.firebaseapp.com",
+     databaseURL: "https://sipty-f9d06.firebaseio.com",
+     projectId: "sipty-f9d06",
+     storageBucket: "",
+     messagingSenderId: "376113749242"
+   };
+   firebase.initializeApp(config);
+
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -82,7 +95,10 @@
     FB.api('/me',{ locale: 'ja_JP', fields: 'name, email, id' }, function(response) {
       console.log('Successful login for: ' + response.name);
       var userid = response.id;
-      console.log("ユーザーID： " + userid);
+      console.log("ユーザーID： " + userid); // 成功
+      if(userid) {
+
+      }
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         console.log(response);
