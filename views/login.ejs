@@ -38,7 +38,17 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
-      set_DB_user_info();
+      // set_DB_user_info();
+      // エクステンションてスオ
+      MessengerExtensions.getUserID(function success(uids) {
+        // User ID was successfully obtained.
+            var psid = uids.psid;
+            console.log("psidを表示:" + psid);
+
+        }, function error(err, errorMessage) {
+        // Error handling code
+        });
+      // エクステンションテスト
       console.log("すでにログイン済");
     } else {
       // The person is not logged into your app or we are unable to tell.
@@ -113,26 +123,9 @@
     });
   }
 
-//   FB.api(
-//     "/{user-id}/friends",
-//     function (response) {
-//       if (response && !response.error) {
-//         /* handle the result */
-//       }
-//     }
-// );
-
   /* make the API call */
 function set_DB_user_info() {
   console.log("SPIDの確認");
-  MessengerExtensions.getUserID(function success(uids) {
-  	// User ID was successfully obtained.
-      	var psid = uids.psid;
-        console.log("psidを表示:" + psid);
-
-    }, function error(err, errorMessage) {
-  	// Error handling code
-    });
 }
 
 </script>
