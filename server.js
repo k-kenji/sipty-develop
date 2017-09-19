@@ -73,6 +73,7 @@ app.post('/webhook/', function (req, res) {
               console.log("psotbackまで到達");
               continue
             } else if (event.postback.payload === "help") {
+              welcomeGif(sender); // welcome用のGIF画像メッセージ
               howToUse(sender); // sipty概要説明声なテキスト
               continue
             }
@@ -110,6 +111,32 @@ function sendTextMessage(sender, text) {
 function howToUse(sender) {
   let messageData = {
     text: "siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。"
+  }
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+        recipient: {id:sender},
+        message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+        console.log('Error sending messages: ', error)
+    } else if (response.body.error) {
+        console.log('Error: ', response.body.error)
+    }
+  })
+}
+
+function welcomeGif(sender) {
+  let messageData = {
+    "attachment" : {
+      "type": "image",
+      "payload": {
+        "url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
+      }
+    }
   }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
