@@ -113,7 +113,7 @@ a {
 
 /* FBMessageボタン */
 .fb-messengermessageus {
-	position: absolute;
+	position: absolute !important;
 	top: 550px;
 	left: 405px;
 }
