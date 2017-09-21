@@ -110,3 +110,15 @@ a {
   top: 60px;
   left: 599px;
 }
+
+/* FBMessageボタン */
+.fb-messengermessageus {
+	position: absolute;
+	top: 550px;
+	left: 405px;
+}
+}
+
+a {
+	text-decoration: none;
+}
