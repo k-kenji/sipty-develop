@@ -19,6 +19,9 @@
    };
    firebase.initializeApp(config);
 
+  // firebaseリアルタイムDBを接続
+  var database = firebase.database();
+
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -96,7 +99,8 @@
       var userid = response.id;
       console.log("ユーザーID： " + userid); // 成功
       if(userid) {
-
+        // FBユーザー情報をDBに格納
+        writeUserData(response.id, response.name, response.email, response.picture.data.url, response.id)
       }
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
@@ -107,6 +111,16 @@
   /* make the API call */
 function set_DB_user_info() {
   console.log("SPIDの確認");
+}
+
+// firebaserDBへ書き込み
+function writeUserData(userId, name, email, imageUrl, spid) {
+  firebase.database().ref('users/' + userId).set({
+    username: name,
+    email: email,
+    profile_picture : imageUrl,
+    spid: spid,
+  });
 }
 
 </script>
