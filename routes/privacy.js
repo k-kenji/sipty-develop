@@ -3,7 +3,7 @@ var router = express.Router();
 
 // デフォルトルーティング
 router.get('/privacy', function (request, response) { // このURLpathが呼ばれると
-    response.render('privacy');
-});
+    response.render('privacy.ejs');
+})
 
 module.exports = router;
