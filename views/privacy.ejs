@@ -1,134 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
-</head>
-<body>
-  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
-<script>
-
-  // Initialize Firebase
-   var config = {
-     apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0",
-     authDomain: "sipty-f9d06.firebaseapp.com",
-     databaseURL: "https://sipty-f9d06.firebaseio.com",
-     projectId: "sipty-f9d06",
-     storageBucket: "",
-     messagingSenderId: "376113749242"
-   };
-   firebase.initializeApp(config);
-
-
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-      // set_DB_user_info();
-      console.log("すでにログイン済");
-    } else {
-      // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    }
-  }
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '498841083787161',
-    cookie     : true,  // enable cookies to allow the server to access
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.10' // use graph api version 2.8
-  });
-  FB.AppEvents.logPageView();
-
-  // Now that we've initialized the JavaScript SDK, we call
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
-
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
-  };
-
-
-    // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.10&appId=498841083787161";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me',{ locale: 'ja_JP', fields: 'name, email, id, picture' }, function(response) {
-      console.log('Successful login for: ' + response.name);
-      var userid = response.id;
-      console.log("ユーザーID： " + userid); // 成功
-      if(userid) {
-
-      }
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-        console.log(response);
-    });
-  }
-
-  /* make the API call */
-function set_DB_user_info() {
-  console.log("SPIDの確認");
-}
-
-</script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-
-<fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
-
-<div id="fb-root"></div>
-
-<div class="fb-login-button" onlogin="checkLoginState();" scope="public_profile,email,user_friends" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false">
-</div>
-
-
-
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>privacy page</title>
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- main CSS -->
+    <link rel="stylesheet" href="/public/stylesheets/index.css" type="text/css">
+    <!-- reset css -->
+    <link rel="stylesheet" href="/public/stylesheets/reset.css" type="text/css">
+    <!-- font-family -->
+    <!-- <link rel="stylesheet" href="font/donau"> -->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <h1>プライバシーポリシー</h1>
+        <h2>第1条（プライバシー情報）</h2>
+        <h2>第２条（プライバシー情報の収集方法）</h2>
+        <h2>第３条（個人情報を収集・利用する目的）</h2>
+        <h2>第４条（個人情報の第三者提供）</h2>
+        <h2>第５条（個人情報の開示）</h2>
+        <h2>第６条（個人情報の訂正および削除）</h2>
+        <h2>第７条（個人情報の利用停止等）</h2>
+        <h2>第８条（プライバシーポリシーの変更）</h2>
+        <h2>第９条（お問い合わせ窓口）</h2>
+      </div>
+    </div>
+    <!-- third-partyのライブラリ読み込み -->
+    <script type="text/javascript" src="/public/third_party/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/public/third_party/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/public/javascripts/index.js"></script>
+  </body>
 </html>
