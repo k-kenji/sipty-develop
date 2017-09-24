@@ -26,8 +26,9 @@ app.set('view engine', 'ejs'); // テンプレートエンジンをEJSに設定
 
 app.use(express.static(__dirname)); // 静的ファイルを公開
 
-app.use('/', require('./routes/index.js')); // ルーティング設定
-app.get('/login', require('./routes/login.js')); // ルーティング設定
+app.use('/', require('./routes/index.js')); // ルーティング設定 → homeページ
+app.get('/login', require('./routes/login.js')); // ルーティング設定 → loginページ
+app.get('/privacy', require('./routes/privacy.js')); // ルーティング設定 → privacyページ
 
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
