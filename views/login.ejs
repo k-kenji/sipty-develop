@@ -21,6 +21,7 @@
 
   // firebaseリアルタイムDBを接続
   var database = firebase.database();
+  var ref = new Firebase('https://sipty-f9d06.firebaseio.com/');
 
 
   // This is called with the results from from FB.getLoginStatus().
@@ -99,6 +100,7 @@
       var userid = response.id;
       console.log("ユーザーID： " + userid); // 成功
       if(userid) {
+        console.log("firebaseDB書き込み処理に到達");
         // FBユーザー情報をDBに格納
         writeUserData(response.id, response.name, response.email, response.picture.data.url, response.id)
       }
