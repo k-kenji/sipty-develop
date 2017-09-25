@@ -304,7 +304,15 @@ function sendGif(sender) {
 // GIF画像のあとのクイックメッセージ
 function firstQuick(sender) {
   let messageData = {
-    text: "テスト"
+    "quick_replies":[
+        {"content_type":"text",
+        "title":"title1",
+        "payload":"SUPPLEMENT_1"},
+        {"content_type":"text",
+        "title":"title2",
+        "payload":"PAYLOAD_1"
+        }
+    ]
   }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
