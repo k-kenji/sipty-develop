@@ -76,15 +76,80 @@ app.post('/webhook/', function (req, res) {
             } else if (event.postback.payload === "help") {
               // welcomeGif(sender); // welcome用のGIF画像メッセージ,gifのほうが処理が遅いのでpromiseを使って順番に処理を実行する
               // howToUse(sender); // sipty概要説明声なテキスト
-              if(true) {
-                sendWelcomeMessage(sender)
-              }
-              if(true) {
-                sendGif(sender)
-              }
-              if(true) {
-                firstQuick(sender)
-              }
+              setTimeoutAsync(sender)
+                  .then(test1(sender) {
+                    let messageData = {
+                      text: "siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。"
+                    }
+                    request({
+                      url: 'https://graph.facebook.com/v2.6/me/messages',
+                      qs: {access_token:token},
+                      method: 'POST',
+                      json: {
+                          recipient: {id:sender},
+                          message: messageData,
+                      }
+                    }, function(error, response, body) {
+                      if (error) {
+                          console.log('Error sending messages: ', error)
+                      } else if (response.body.error) {
+                          console.log('Error: ', response.body.error)
+                      }
+                    })
+                  }).then(test2(sender) {
+                    let messageData = {
+                      "attachment" : {
+                        "type": "image",
+                        "payload": {
+                          "url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
+                        }
+                      }
+                    }
+                    request({
+                      url: 'https://graph.facebook.com/v2.6/me/messages',
+                      qs: {access_token:token},
+                      method: 'POST',
+                      json: {
+                          recipient: {id:sender},
+                          message: messageData,
+                      }
+                    }, function(error, response, body) {
+                      if (error) {
+                          console.log('Error sending messages: ', error)
+                      } else if (response.body.error) {
+                          console.log('Error: ', response.body.error)
+                      }
+                    })
+                  }).then(test3(sender) {
+                    let messageData = {
+                      // クイックメッセージはtextと一緒でないと動作でないとしない
+                      text: "siptyを使ってみよう",
+                      "quick_replies":[
+                          {"content_type":"text",
+                          "title":"title1",
+                          "payload":"SUPPLEMENT_1"},
+                          {"content_type":"text",
+                          "title":"title2",
+                          "payload":"PAYLOAD_1"
+                          }
+                      ]
+                    }
+                    request({
+                      url: 'https://graph.facebook.com/v2.6/me/messages',
+                      qs: {access_token:token},
+                      method: 'POST',
+                      json: {
+                          recipient: {id:sender},
+                          message: messageData,
+                      }
+                    }, function(error, response, body) {
+                      if (error) {
+                          console.log('Error sending messages: ', error)
+                      } else if (response.body.error) {
+                          console.log('Error: ', response.body.error)
+                      }
+                    })
+                  });
               // var promise = Promise.resolve();
               // promise
               //     .then(sendGif(sender))
@@ -304,6 +369,7 @@ function sendGif(sender) {
 // GIF画像のあとのクイックメッセージ
 function firstQuick(sender) {
   let messageData = {
+    // クイックメッセージはtextと一緒でないと動作でないとしない
     text: "siptyを使ってみよう",
     "quick_replies":[
         {"content_type":"text",
@@ -361,6 +427,98 @@ function finalTask() {
     console.log("Final Task");
 }
 
+// promise関数
+function setTimeoutAsync(delay) {
+    // Promiseクラスのインスタンスを関数の戻り値にする
+    // Promiseクラスのコンストラクタの引数には関数を渡す
+    // その関数は、resolve関数とreject関数を引数に取り、戻り値は無し
+    return new Promise(function(resolve, reject) {
+        // 非同期処理の完了コールバックとしてresolve関数を渡す
+        // setTimeout(resolve, delay);
+        console.log(resolve, delay);
+
+        // または、以下のように完了コールバック内でresolve関数を呼び出してもOK
+        // setTimeout(function() {
+        //     resolve();
+        // }, 1000);
+    });
+}
+
+// 使い方
+setTimeoutAsync(sender)
+    .then(test1(sender) {
+      let messageData = {
+        text: "siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。"
+      }
+      request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+      }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+      })
+    }).then(test2(sender) {
+      let messageData = {
+        "attachment" : {
+          "type": "image",
+          "payload": {
+            "url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
+          }
+        }
+      }
+      request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+      }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+      })
+    }).then(test3(sender) {
+      let messageData = {
+        // クイックメッセージはtextと一緒でないと動作でないとしない
+        text: "siptyを使ってみよう",
+        "quick_replies":[
+            {"content_type":"text",
+            "title":"title1",
+            "payload":"SUPPLEMENT_1"},
+            {"content_type":"text",
+            "title":"title2",
+            "payload":"PAYLOAD_1"
+            }
+        ]
+      }
+      request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+      }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+      })
+    });
 
 
 
