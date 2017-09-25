@@ -80,7 +80,7 @@ app.post('/webhook/', function (req, res) {
               promise
                   .then(sendGif(sender))
                   .then(sendWelcomeMessage(sender))
-                  // .then(sendfirstQuick(sender))
+                  .then(sendfirstQuick(sender))
                   .catch(onRejected)
                   .then(finalTask);
               continue
