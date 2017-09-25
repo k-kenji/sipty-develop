@@ -66,6 +66,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' "https://graph.facebook.com/v2.6/me/messages?access_token=PAGE_ACCESS_TOKEN"
 
 
+siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。
 // GIF welcomeメッセージ
 https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif
 
@@ -126,3 +127,49 @@ promise
         .then(taskB)
         .catch(onRejected)
         .then(finalTask);
+
+
+
+
+
+
+
+
+        "quick_replies":[
+             {
+               "content_type":"text",
+               "title":"Red",
+               "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+             }
+           ]
+
+           "quick_replies":[
+                {
+                  "content_type":"location"
+                }
+              ]
+
+
+              curl -X POST -H "Content-Type: application/json" -d '{
+                "recipient":{
+                  "id":"<PSID>"
+                },
+                "message":{
+                  "quick_replies":[
+                    {
+                      "content_type":"text",
+                      "title":"Search",
+                      "payload":"<POSTBACK_PAYLOAD>",
+                      "image_url":"http://example.com/img/red.png"
+                    },
+                    {
+                      "content_type":"location"
+                    },
+                    {
+                      "content_type":"text",
+                      "title":"Something Else",
+                      "payload":"<POSTBACK_PAYLOAD>"
+                    }
+                  ]
+                }
+              }' "https://graph.facebook.com/v2.6/me/messages?access_token=<PAGE_ACCESS_TOKEN>"

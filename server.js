@@ -80,10 +80,11 @@ app.post('/webhook/', function (req, res) {
               promise
                   .then(sendGif(sender))
                   .then(sendWelcomeMessage(sender))
+                  .then(sendfirstQuick(sender))
                   .catch(onRejected)
                   .then(finalTask);
               continue
-            }
+            } else if (event.postback.payload === "")
             continue
         }
     }
@@ -117,7 +118,8 @@ function sendTextMessage(sender, text) {
 
 function howToUse(sender) { // siptyの説明
   let messageData = {
-    text: "siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。"
+    // startchatで表示されるメッセージ
+    text: "siptyはあなたがFacebookの友人に再会するのを手伝ってくれます。最近コンタクトできていない友人を探して教えてくれます！気になった人がいたらメッセージしてみよう！"
   }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -263,6 +265,7 @@ function firstLoginMessage(sender) {
   })
 }
 
+// startのGIF画像
 function sendGif(sender) {
   let messageData = {
     "attachment" : {
@@ -288,6 +291,36 @@ function sendGif(sender) {
     }
   })
 }
+
+// GIF画像のあとのクイックメッセージ
+function sendfirstQuick(sender) {
+  let messageData = {
+    "quick_replies": [
+      {
+        "content_type":"text",
+        "title":"siptyを使ってみる",
+        "payload":"startsipty",
+      }
+    ]
+  }
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+        recipient: {id:sender},
+        message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+        console.log('Error sending messages: ', error)
+    } else if (response.body.error) {
+        console.log('Error: ', response.body.error)
+    }
+  })
+}
+
+// startchatの返信用のメッセージ
 function sendWelcomeMessage(sender) {
   let messageData = {
     text: "siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。"
