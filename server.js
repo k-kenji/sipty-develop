@@ -84,7 +84,7 @@ app.post('/webhook/', function (req, res) {
                   .catch(onRejected)
                   .then(finalTask);
               continue
-            } else if (event.postback.payload === "")
+            }
             continue
         }
     }
@@ -299,7 +299,7 @@ function sendfirstQuick(sender) {
       {
         "content_type":"text",
         "title":"siptyを使ってみる",
-        "payload":"startsipty",
+        "payload":"startsipty"
       }
     ]
   }
