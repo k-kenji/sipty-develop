@@ -80,7 +80,7 @@ app.post('/webhook/', function (req, res) {
               promise
                   .then(sendGif(sender))
                   .then(sendWelcomeMessage(sender))
-                  .then(sendfirstQuick(sender))
+                  // .then(sendfirstQuick(sender))
                   .catch(onRejected)
                   .then(finalTask);
               continue
@@ -295,13 +295,8 @@ function sendGif(sender) {
 // GIF画像のあとのクイックメッセージ
 function sendfirstQuick(sender) {
   let messageData = {
-    "quick_replies": [
-      {
-        "content_type":"text",
-        "title":"siptyを使ってみる",
-        "payload":"startsipty"
-      }
-    ]
+    // クイックメッセージはメッセージと一緒に使わないとエラーになる
+
   }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
