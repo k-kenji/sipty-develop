@@ -149,27 +149,31 @@ promise
                 }
               ]
 
-
-              curl -X POST -H "Content-Type: application/json" -d '{
-                "recipient":{
-                  "id":"<PSID>"
-                },
-                "message":{
-                  "quick_replies":[
-                    {
-                      "content_type":"text",
-                      "title":"Search",
-                      "payload":"<POSTBACK_PAYLOAD>",
-                      "image_url":"http://example.com/img/red.png"
-                    },
-                    {
-                      "content_type":"location"
-                    },
-                    {
-                      "content_type":"text",
-                      "title":"Something Else",
-                      "payload":"<POSTBACK_PAYLOAD>"
-                    }
-                  ]
-                }
-              }' "https://graph.facebook.com/v2.6/me/messages?access_token=<PAGE_ACCESS_TOKEN>"
+              {
+                "object": "page",
+                "entry": [
+                  {
+                    "id": "682498171943165",
+                    "time": 1502905976963,
+                    "messaging": [
+                      {
+                        "sender": {
+                          "id": "1254459154682919"
+                        },
+                        "recipient": {
+                          "id": "682498171943165"
+                        },
+                        "timestamp": 1502905976377,
+                        "message": {
+                          "quick_reply": {
+                            "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+                          },
+                          "mid": "mid.$cAAJsujCd2ORkHXKOOVd7C1F97Zto",
+                          "seq": 9767,
+                          "text": "Green"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }

@@ -304,6 +304,7 @@ function sendGif(sender) {
 // GIF画像のあとのクイックメッセージ
 function firstQuick(sender) {
   let messageData = {
+    text: "siptyを使ってみよう",
     "quick_replies":[
         {"content_type":"text",
         "title":"title1",
