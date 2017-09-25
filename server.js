@@ -293,10 +293,9 @@ function sendGif(sender) {
 }
 
 // GIF画像のあとのクイックメッセージ
-function sendfirstQuick(sender) {
+function firstQuick(sender) {
   let messageData = {
-    // クイックメッセージはメッセージと一緒に使わないとエラーになる
-
+    text: "テスト"
   }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
