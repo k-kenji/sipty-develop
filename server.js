@@ -400,9 +400,9 @@ var firstQuick = function (sender) {
   })
 }
 
-function execCallback (callback(sender)) {
+function execCallback (callback {
   sendGif(sender);
-  callback();
+  callback(sender);
 }
 
 
