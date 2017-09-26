@@ -78,9 +78,9 @@ app.post('/webhook/', function (req, res) {
               // howToUse(sender); // sipty概要説明声なテキスト
               var promise = Promise.resolve();
               promise
-                .then(sendGif(sender))
-                .then(sendWelcomeMessage(sender))
-                .then(firstQuick(sender))
+                .then(sendGif)
+                .then(sendWelcomeMessage)
+                .then(firstQuick)
                 .catch(onRejected);
               // var promise = Promise.resolve();
               // promise
