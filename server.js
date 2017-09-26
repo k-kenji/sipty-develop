@@ -76,7 +76,7 @@ app.post('/webhook/', function (req, res) {
             } else if (event.postback.payload === "help") {
               welcomeGif(sender); // welcome用のGIF画像メッセージ,gifのほうが処理が遅いのでpromiseを使って順番に処理を実行する
               sendWelcomeMessage(sender);
-              setTimeoutAsync(3000)
+              setTimeoutAsync(8000)
               .then(firstQuick(sender));
               // var promise = Promise.resolve();
               // promise
