@@ -75,13 +75,21 @@ app.post('/webhook/', function (req, res) {
               continue
             } else if (event.postback.payload === "help") {
               startSipty(sender);
-              // var promise = Promise.resolve();
-              // promise
-              //     .then(sendGif(sender))
-              //     .then(sendWelcomeMessage(sender))
-              //     .then(firstQuick(sender))
-              //     .catch(onRejected)
-              //     .then(finalTask);
+              continue
+            } else if (event.postback.payload === "usesipty") {
+              firstQuick(sender);
+              continue
+            } else if (event.postback.payload === "friend1") {
+              findTextMessage(sender);
+              firstReply(sender);
+              continue
+            } else if (event.postback.payload === "friend2") {
+              findTextMessage(sender);
+              secondReply(sender);
+              continue
+            } else if (event.postback.payload === "friend3") {
+              findTextMessage(sender);
+              thirdReply(sender);
               continue
             }
             continue
@@ -291,18 +299,21 @@ function sendGif(sender) {
   })
 }
 
-// GIF画像のあとのクイックメッセージ
+// あとのクイックメッセージ
 function firstQuick(sender) {
   let messageData = {
     // クイックメッセージはtextと一緒でないと動作でないとしない
-    text: "siptyを使ってみよう",
+    text: "ボタンをタップしてね",
     "quick_replies":[
         {"content_type":"text",
-        "title":"title1",
-        "payload":"SUPPLEMENT_1"},
+        "title":"3ヶ月以内にチャットしたに友人を探す",
+        "payload":"friend1"},
         {"content_type":"text",
-        "title":"title2",
-        "payload":"PAYLOAD_1"
+        "title":"3~6ヶ月前にチャットした友人を探す",
+        "payload":"friend2"},
+        {"content_type":"text",
+        "title":"一度もチャットしたことのない人を探す",
+        "payload":"friend3",
         }
     ]
   }
@@ -379,13 +390,13 @@ function startSipty(sender) {
                     "title": "siptyはFacebookの友人との再会を手伝ってくれます。",
                     "image_url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
                 }, {
-                    "title": "昔メッセージしてた友人を探してくれます。",
+                    "title": "昔チャットしていた友人を探してくれます。",
                     "image_url": "https://media.giphy.com/media/l0MYII7ZjLVhZx4ze/giphy.gif",
                 }, {
-                    "title": "気になった人がいたらメッセージしてみよう",
+                    "title": "気になった人がいたらメッセージしてみたら？",
                     "image_url": "https://media.giphy.com/media/l0MYyeA8YySwK0G88/giphy.gif",
                 }, {
-                    "title": "友人に再会しよう！",
+                    "title": "さあ、友人に再会しよう！",
                     "image_url": "https://media.giphy.com/media/3oKGzCvdJbyWsc5Nni/giphy.gif",
                     "buttons": [{
                         "type": "postback",
@@ -412,6 +423,27 @@ function startSipty(sender) {
         }
     })
 }
+
+function findTextMessage(sender) {
+    let messageData = { text: "こんな人が見つかったよ！思い切ってチャットしてみよう！" }
+
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
 
 
 
