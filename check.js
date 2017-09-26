@@ -177,3 +177,52 @@ promise
                   }
                 ]
               }
+
+
+
+  function  welcomeGif(sender) {
+    let messageData = {
+      "attachment" : {
+        "type": "image",
+        "payload": {
+          "url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
+        }
+      }
+    }
+    request({
+      url: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: {access_token:token},
+      method: 'POST',
+      json: {
+          recipient: {id:sender},
+          message: messageData,
+      }
+    }, function(error, response, body) {
+      if (error) {
+          console.log('Error sending messages: ', error)
+      } else if (response.body.error) {
+          console.log('Error: ', response.body.error)
+      }
+    })
+  setTimeout(sendWelcomeMessage(sender) => {
+    // Bの処理
+    let messageData = {
+      text: "siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。"
+    }
+    request({
+      url: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: {access_token:token},
+      method: 'POST',
+      json: {
+          recipient: {id:sender},
+          message: messageData,
+      }
+    }, function(error, response, body) {
+      if (error) {
+          console.log('Error sending messages: ', error)
+      } else if (response.body.error) {
+          console.log('Error: ', response.body.error)
+      }
+    })
+  }, 3000)
+}

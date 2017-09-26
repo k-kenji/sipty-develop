@@ -76,15 +76,12 @@ app.post('/webhook/', function (req, res) {
             } else if (event.postback.payload === "help") {
               // welcomeGif(sender); // welcome用のGIF画像メッセージ,gifのほうが処理が遅いのでpromiseを使って順番に処理を実行する
               // howToUse(sender); // sipty概要説明声なテキスト
-              if(true) {
-                sendWelcomeMessage(sender)
-              }
-              if(true) {
-                sendGif(sender)
-              }
-              if(true) {
-                firstQuick(sender)
-              }
+              var promise = Promise.resolve();
+              promise
+                .then(sendGif(sender))
+                .then(sendWelcomeMessage(sender))
+                .then(firstQuick(sender))
+                .catch(onRejectted);
               // var promise = Promise.resolve();
               // promise
               //     .then(sendGif(sender))
