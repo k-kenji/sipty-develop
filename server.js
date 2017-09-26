@@ -74,10 +74,7 @@ app.post('/webhook/', function (req, res) {
               console.log("psotbackまで到達");
               continue
             } else if (event.postback.payload === "help") {
-              welcomeGif(sender); // welcome用のGIF画像メッセージ,gifのほうが処理が遅いのでpromiseを使って順番に処理を実行する
-              sendWelcomeMessage(sender);
-              setTimeoutAsync(8000)
-              .then(firstQuick(sender));
+              execCallback(firstQuick(sender));
               // var promise = Promise.resolve();
               // promise
               //     .then(sendGif(sender))
@@ -371,6 +368,42 @@ function setTimeoutAsync(delay) {
 }
 
 
+// コールバック関数の処理
+var firstQuick = function (sender) {
+  let messageData = {
+    // クイックメッセージはtextと一緒でないと動作でないとしない
+    text: "siptyを使ってみよう",
+    "quick_replies":[
+        {"content_type":"text",
+        "title":"title1",
+        "payload":"SUPPLEMENT_1"},
+        {"content_type":"text",
+        "title":"title2",
+        "payload":"PAYLOAD_1"
+        }
+    ]
+  }
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+        recipient: {id:sender},
+        message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+        console.log('Error sending messages: ', error)
+    } else if (response.body.error) {
+        console.log('Error: ', response.body.error)
+    }
+  })
+}
+
+function execCallback (callback) {
+  sendGif(sender);
+  callback();
+}
 
 
 
