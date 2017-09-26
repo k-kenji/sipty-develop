@@ -74,14 +74,10 @@ app.post('/webhook/', function (req, res) {
               console.log("psotbackまで到達");
               continue
             } else if (event.postback.payload === "help") {
-              // welcomeGif(sender); // welcome用のGIF画像メッセージ,gifのほうが処理が遅いのでpromiseを使って順番に処理を実行する
-              // howToUse(sender); // sipty概要説明声なテキスト
-              var promise = Promise.resolve();
-              promise
-                .then(sendGif)
-                .then(sendWelcomeMessage)
-                .then(firstQuick)
-                .catch(onRejected);
+              welcomeGif(sender); // welcome用のGIF画像メッセージ,gifのほうが処理が遅いのでpromiseを使って順番に処理を実行する
+              sendWelcomeMessage(sender);
+              setTimeoutAsync(3000)
+              .then(firstQuick(sender));
               // var promise = Promise.resolve();
               // promise
               //     .then(sendGif(sender))
@@ -357,6 +353,21 @@ function onRejected(error) {
 }
 function finalTask() {
     console.log("Final Task");
+}
+
+function setTimeoutAsync(delay) {
+    // Promiseクラスのインスタンスを関数の戻り値にする
+    // Promiseクラスのコンストラクタの引数には関数を渡す
+    // その関数は、resolve関数とreject関数を引数に取り、戻り値は無し
+    return new Promise(function(resolve, reject) {
+        // 非同期処理の完了コールバックとしてresolve関数を渡す
+        setTimeout(resolve, delay);
+
+        // または、以下のように完了コールバック内でresolve関数を呼び出してもOK
+        // setTimeout(function() {
+        //     resolve();
+        // }, 1000);
+    });
 }
 
 
