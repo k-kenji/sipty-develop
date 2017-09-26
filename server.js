@@ -74,7 +74,7 @@ app.post('/webhook/', function (req, res) {
               console.log("psotbackまで到達");
               continue
             } else if (event.postback.payload === "help") {
-              execCallback(firstQuick(sender));
+              startSipty(sender);
               // var promise = Promise.resolve();
               // promise
               //     .then(sendGif(sender))
@@ -368,45 +368,50 @@ function setTimeoutAsync(delay) {
 }
 
 
-// コールバック関数の処理
-var firstQuick = function (sender) {
-  let messageData = {
-    // クイックメッセージはtextと一緒でないと動作でないとしない
-    text: "siptyを使ってみよう",
-    "quick_replies":[
-        {"content_type":"text",
-        "title":"title1",
-        "payload":"SUPPLEMENT_1"},
-        {"content_type":"text",
-        "title":"title2",
-        "payload":"PAYLOAD_1"
+// siptyを使ってみるボタン
+function startSipty(sender) {
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "First card",
+                    "subtitle": "Element #1 of an hscroll",
+                    "image_url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://www.messenger.com",
+                        "title": "web url"
+                    }, {
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "Payload for first element in a generic bubble",
+                    }],
+                }, {
+                    "title": "Second card",
+                    "subtitle": "Element #2 of an hscroll",
+                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                }]
+            }
         }
-    ]
-  }
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token:token},
-    method: 'POST',
-    json: {
-        recipient: {id:sender},
-        message: messageData,
     }
-  }, function(error, response, body) {
-    if (error) {
-        console.log('Error sending messages: ', error)
-    } else if (response.body.error) {
-        console.log('Error: ', response.body.error)
-    }
-  })
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
 }
-
-function execCallback (callback) {
-  sendGif(sender);
-  callback(sender);
-}
-
-
-
 
 
 
