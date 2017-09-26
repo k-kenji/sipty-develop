@@ -81,7 +81,7 @@ app.post('/webhook/', function (req, res) {
                 .then(sendGif(sender))
                 .then(sendWelcomeMessage(sender))
                 .then(firstQuick(sender))
-                .catch(onRejectted);
+                .catch(onRejected);
               // var promise = Promise.resolve();
               // promise
               //     .then(sendGif(sender))
