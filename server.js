@@ -376,22 +376,22 @@ function startSipty(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
-                    }],
+                    "title": "siptyはFacebookの友人との再会を手伝ってくれます。",
+                    "image_url": "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
                 }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "title": "昔メッセージしてた友人を探してくれます。",
+                    "image_url": "https://media.giphy.com/media/l0MYII7ZjLVhZx4ze/giphy.gif",
+                }, {
+                    "title": "気になった人がいたらメッセージしてみよう",
+                    "image_url": "https://media.giphy.com/media/l0MYyeA8YySwK0G88/giphy.gif",
+                }, {
+                    "title": "友人に再会しよう！",
+                    "image_url": "https://media.giphy.com/media/3oKGzCvdJbyWsc5Nni/giphy.gif",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "使ってみる",
+                        "payload": "usesipty"
+                    }],
                 }]
             }
         }
