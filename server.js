@@ -78,6 +78,8 @@ app.post('/webhook/', function (req, res) {
               continue
             } else if (event.postback.payload === "usesipty") {
               firstQuick(sender);
+              console.log(event.message);
+              console.log(event);
               continue
             }
             continue
