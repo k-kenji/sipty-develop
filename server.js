@@ -79,20 +79,22 @@ app.post('/webhook/', function (req, res) {
             } else if (event.postback.payload === "usesipty") {
               firstQuick(sender);
               continue
-            } else if (event.postback.payload === "fbutton") {
-              findTextMessage(sender);
-              // firstReply(sender);
-              continue
-            } else if (event.postback.payload === "sbutton") {
-              findTextMessage(sender);
-              // secondReply(sender);
-              continue
-            } else if (event.postback.payload === "tbutton") {
-              findTextMessage(sender);
-              // thirdReply(sender);
-              continue
             }
             continue
+        }
+        if(event.message.quick_reply) {
+          let text = JSON.stringify(event.message.quick_reply)
+          if(event.message.quick_reply.payload === "fbutton") {
+            findTextMessage(sender);
+            continue
+          } else if(event.message.quick_reply.payload === "sbutton") {
+            findTextMessage(sender);
+            continue
+          } else if(event.message.quick_reply.payload === "tbutton") {
+            findTextMessage(sender);
+            continue
+          }
+          continue
         }
     }
     res.sendStatus(200)
