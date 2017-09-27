@@ -62,6 +62,9 @@ app.post('/webhook/', function (req, res) {
                 console.log("welcome to chatbot")
                 sendGenericMessage(sender)
                 continue
+            } else if(text === "スタート") {
+              firstLoginMessage(sender);
+              continue
             }
             // console.log();
             sendTextMessage(sender, text.substring(0, 200))
@@ -81,15 +84,15 @@ app.post('/webhook/', function (req, res) {
               continue
             } else if (event.postback.payload === "friend1") {
               findTextMessage(sender);
-              firstReply(sender);
+              // firstReply(sender);
               continue
             } else if (event.postback.payload === "friend2") {
               findTextMessage(sender);
-              secondReply(sender);
+              // secondReply(sender);
               continue
             } else if (event.postback.payload === "friend3") {
               findTextMessage(sender);
-              thirdReply(sender);
+              // thirdReply(sender);
               continue
             }
             continue
