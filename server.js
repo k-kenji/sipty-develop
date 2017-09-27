@@ -62,9 +62,6 @@ app.post('/webhook/', function (req, res) {
                 console.log("welcome to chatbot")
                 sendGenericMessage(sender)
                 continue
-            } else if(text === "スタート") {
-              firstLoginMessage(sender);
-              continue
             }
             // console.log();
             sendTextMessage(sender, text.substring(0, 200))
