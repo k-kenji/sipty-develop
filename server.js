@@ -68,6 +68,7 @@ app.post('/webhook/', function (req, res) {
         }
         if (event.postback) {
             let text = JSON.stringify(event.postback)
+            console.log(event);
             // sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
             if(event.postback.payload === "GET_STARTED_PAYLOAD") {
               firstLoginMessage(sender); // この関数のあとでpromiseを実行
@@ -81,7 +82,7 @@ app.post('/webhook/', function (req, res) {
               firstQuick(sender);
               continue
             }
-
+            continue
         }
         if(event.message.quick_reply) {
           console.log(event);
