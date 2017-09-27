@@ -81,7 +81,7 @@ app.post('/webhook/', function (req, res) {
               firstQuick(sender);
               continue
             }
-            continue
+
         }
         if(event.message.quick_reply) {
           console.log(event);
