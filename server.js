@@ -308,15 +308,20 @@ function firstQuick(sender) {
     // クイックメッセージはtextと一緒でないと動作でないとしない
     text: "ボタンをタップしてね",
     "quick_replies":[
-        {"content_type":"text",
-        "title":"3ヶ月以内にチャットしたに友人を探す",
-        "payload":"fbutton"},
-        {"content_type":"text",
-        "title":"3~6ヶ月前にチャットした友人を探す",
-        "payload":"sbutton"},
-        {"content_type":"text",
-        "title":"一度もチャットしたことのない人を探す",
-        "payload":"tbutton",
+        {
+          "content_type":"text",
+          "title":"3ヶ月以内にチャットしたに友人を探す",
+          "payload":"fbutton"
+        },
+        {
+          "content_type":"text",
+          "title":"3~6ヶ月前にチャットした友人を探す",
+          "payload":"sbutton"
+        },
+        {
+          "content_type":"text",
+          "title":"一度もチャットしたことのない人を探す",
+          "payload":"tbutton",
         }
     ]
   }
