@@ -82,15 +82,15 @@ app.post('/webhook/', function (req, res) {
             } else if (event.postback.payload === "usesipty") {
               firstQuick(sender);
               continue
-            } else if (event.postback.payload === "friend1") {
+            } else if (event.postback.payload === "fbutton") {
               findTextMessage(sender);
               // firstReply(sender);
               continue
-            } else if (event.postback.payload === "friend2") {
+            } else if (event.postback.payload === "sbutton") {
               findTextMessage(sender);
               // secondReply(sender);
               continue
-            } else if (event.postback.payload === "friend3") {
+            } else if (event.postback.payload === "tbutton") {
               findTextMessage(sender);
               // thirdReply(sender);
               continue
@@ -310,13 +310,13 @@ function firstQuick(sender) {
     "quick_replies":[
         {"content_type":"text",
         "title":"3ヶ月以内にチャットしたに友人を探す",
-        "payload":"friend1"},
+        "payload":"fbutton"},
         {"content_type":"text",
         "title":"3~6ヶ月前にチャットした友人を探す",
-        "payload":"friend2"},
+        "payload":"sbutton"},
         {"content_type":"text",
         "title":"一度もチャットしたことのない人を探す",
-        "payload":"friend3",
+        "payload":"tbutton",
         }
     ]
   }
