@@ -77,15 +77,14 @@ app.post('/webhook/', function (req, res) {
               startSipty(sender);
               continue
             } else if (event.postback.payload === "usesipty") {
-              firstQuick(sender);
               console.log(event.message);
-              console.log(event);
+              firstQuick(sender);
               continue
             }
             continue
         }
         if(event.message.quick_reply) {
-          let text = JSON.stringify(event.message.quick_reply)
+          // let text = JSON.stringify(event.message.quick_reply)
           if(event.message.quick_reply.payload === "fbutton") {
             findTextMessage(sender);
             continue
