@@ -83,6 +83,9 @@ app.post('/webhook/', function (req, res) {
             } else if (event.postback.payload === "usesipty") {
               firstQuick(sender);
               continue
+            } else if(event.postback.payload === "more") {
+                recommendfirstuser(sender);
+                continue
             }
             continue
         }
@@ -95,9 +98,11 @@ app.post('/webhook/', function (req, res) {
             continue
           } else if(event.message.quick_reply.payload === "sbutton") {
             findTextMessage(sender);
+            recommendfirstuser(sender);
             continue
           } else if(event.message.quick_reply.payload === "tbutton") {
             findTextMessage(sender);
+            recommendfirstuser(sender);
             continue
           }
           continue
