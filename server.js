@@ -65,10 +65,10 @@ app.post('/webhook/', function (req, res) {
             }
             // console.log();
             sendTextMessage(sender, text.substring(0, 200))
-        } else if(event.message && event.message.quick_reply) {
-          findTextMessage(sender);
-          continue
-        }
+        // } else if(event.message && event.message.quick_reply) {
+        //   findTextMessage(sender);
+        //   continue
+        // }
         if (event.postback) {
             let text = JSON.stringify(event.postback)
             console.log(event);
@@ -81,9 +81,7 @@ app.post('/webhook/', function (req, res) {
               startSipty(sender);
               continue
             } else if (event.postback.payload === "usesipty") {
-              console.log("クイック関数前：" + event);
               firstQuick(sender);
-              console.log("クイック関数後：" + event);
               continue
             }
             continue
