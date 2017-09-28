@@ -68,7 +68,7 @@ app.post('/webhook/', function (req, res) {
         // } else if(event.message && event.message.quick_reply) {
         //   findTextMessage(sender);
         //   continue
-        // }
+        }
         if (event.postback) {
             let text = JSON.stringify(event.postback)
             console.log(event);
