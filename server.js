@@ -466,6 +466,7 @@ function recommendfirstuser(sender) {
                 "template_type": "generic",
                 "elements": [{
                     "title": "諏訪　優太",
+                    "image_url":"http://kktrain.sakura.ne.jp/teaser/img/yuta.png",
                     "default_action": {
                       "type": "web_url",
                       "url": "https://www.facebook.com/yuta.suwa.18",
@@ -483,6 +484,7 @@ function recommendfirstuser(sender) {
                     }],
                 }, {
                     "title": "木村　喜生",
+                    "image_url":"http://kktrain.sakura.ne.jp/teaser/img/kimura.png",
                     "default_action": {
                       "type": "web_url",
                       "url": "https://www.facebook.com/yoshio.kimura.14",
@@ -500,6 +502,7 @@ function recommendfirstuser(sender) {
                     }],
                 },{
                     "title": "菅原　遼介",
+                    "image_url":"http://kktrain.sakura.ne.jp/teaser/img/nobisuke.png",
                     "default_action": {
                       "type": "web_url",
                       "url": "https://www.facebook.com/sugawara.ryousuke",
