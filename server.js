@@ -81,8 +81,9 @@ app.post('/webhook/', function (req, res) {
               startSipty(sender);
               continue
             } else if (event.postback.payload === "usesipty") {
-              console.log(event);
+              console.log("クイック関数前：" + event);
               firstQuick(sender);
+              console.log("クイック関数後：" + event);
               continue
             }
             continue
