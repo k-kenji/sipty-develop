@@ -91,6 +91,7 @@ app.post('/webhook/', function (req, res) {
           // let text = JSON.stringify(event.message.quick_reply)
           if(event.message.quick_reply.payload === "fbutton") {
             findTextMessage(sender);
+            recommendfirstuser(sender);
             continue
           } else if(event.message.quick_reply.payload === "sbutton") {
             findTextMessage(sender);
@@ -456,6 +457,84 @@ function findTextMessage(sender) {
     })
 }
 
+// ユーザーレコメンドカルーセルボタン
+function recommendfirstuser(sender) {
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "諏訪　優太",
+                    "default_action": {
+                      "type": "web_url",
+                      "url": "https://www.facebook.com/yuta.suwa.18",
+                      "messenger_extensions": false,
+                      "webview_height_ratio": "tall",
+                    },
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://www.facebook.com/yuta.suwa.18",
+                        "title": "プロフィール"
+                    }, {
+                        "type": "postback",
+                        "title": "もっと探す",
+                        "payload": "more",
+                    }],
+                }, {
+                    "title": "木村　喜生",
+                    "default_action": {
+                      "type": "web_url",
+                      "url": "https://www.facebook.com/yoshio.kimura.14",
+                      "messenger_extensions": false,
+                      "webview_height_ratio": "tall",
+                    },
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://www.facebook.com/yoshio.kimura.14",
+                        "title": "プロフィール"
+                    }, {
+                        "type": "postback",
+                        "title": "もっと探す",
+                        "payload": "more",
+                    }],
+                },{
+                    "title": "菅原　遼介",
+                    "default_action": {
+                      "type": "web_url",
+                      "url": "https://www.facebook.com/sugawara.ryousuke",
+                      "messenger_extensions": false,
+                      "webview_height_ratio": "tall",
+                    },
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://www.facebook.com/sugawara.ryousuke",
+                        "title": "プロフィール"
+                    }, {
+                        "type": "postback",
+                        "title": "もっと探す",
+                        "payload": "more",
+                    }],
+                }]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
 
 
 
