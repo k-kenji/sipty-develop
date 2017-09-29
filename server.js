@@ -477,7 +477,7 @@ function recommendfirstuser(sender) {
                       "type": "web_url",
                       "url": "https://www.facebook.com/yuta.suwa.18",
                       "messenger_extensions": false,
-                      "webview_height_ratio": "compact",
+                      "webview_height_ratio": "tall",
                     },
                     "buttons": [{
                         "type": "web_url",
@@ -513,7 +513,7 @@ function recommendfirstuser(sender) {
                       "type": "web_url",
                       "url": "https://www.facebook.com/sugawara.ryousuke",
                       "messenger_extensions": false,
-                      "webview_height_ratio": "full",
+                      "webview_height_ratio": "tall",
                     },
                     "buttons": [{
                         "type": "web_url",
