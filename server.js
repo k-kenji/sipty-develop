@@ -56,7 +56,7 @@ app.post('/webhook/', function (req, res) {
         let event = req.body.entry[0].messaging[i]
         console.log("event: ", event); // eventにはwebhookで受け取ったJSONデータ
         let sender = event.sender.id
-        if (event.message && event.message.text) {
+        if (event.message && event.message.text && !event.message.quick_reply) { // ここにクイックメッセージが吸い込まれているから絵error
             let text = event.message.text
             if (text === 'Generic'){
                 console.log("welcome to chatbot")
@@ -90,7 +90,7 @@ app.post('/webhook/', function (req, res) {
             }
             continue
         }
-        if(event.message) {
+        if(event.message.quick_reply.payload) {
           console.log(event.message);
           console.log("テスト");
           // let text = JSON.stringify(event.message.quick_reply)
