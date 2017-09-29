@@ -92,6 +92,7 @@ app.post('/webhook/', function (req, res) {
         }
         if(event.message) {
           console.log(event.message);
+          console.log("テスト");
           // let text = JSON.stringify(event.message.quick_reply)
           if(event.message.quick_reply.payload === "fbutton") {
             findTextMessage(sender);
