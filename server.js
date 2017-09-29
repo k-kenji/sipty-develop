@@ -258,10 +258,10 @@ function firstLoginMessage(sender) {
               {
                 "type":"web_url",
                 "url":"https://sipty-develop.herokuapp.com/login",
-                "title":"View Website"
+                "title":"ログイン"
               },{
                 "type":"postback",
-                "title":"Start Chatting",
+                "title":"使い方",
                 "payload":"help"
               }
             ]
