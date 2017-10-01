@@ -127,6 +127,14 @@ a {
   display: none;
 }
 
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
 /* smartPhone */
 @media screen and (max-width: 640px) {
   /*ここにスマホ用スタイルを記述*/
@@ -136,113 +144,28 @@ a {
     background:  #69B3E1;
     color: #FFFFFF;
     min-height: 100%;
+    width: 100%;
   }
+
+  /* mobileheaderのCSS */
 
   .header {
-    background-color: #207FBA;
+    display: none;
   }
 
-  header #TopMenuList {
-    max-width: 100%;
-    /* margin: 0 auto; */
+  #top-head {
+    display: none;
   }
 
-  /* header #TopMenuList ul {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: left;
-    justify-content: left;
-    list-style: none;
-    padding-left: 0px;
-    font-family: 'donau';
-  } */
-
-  .inner {
-      width: 100%;
-      padding: 0;
-  }
-  .header {
-      top: 0;
-      position: fixed;
-      margin-top: 0;
-  }
-  /* Fixed reset */
-  /* #top-head.fixed {
-      padding-top: 0;
-      background: transparent;
-  } */
-  #mobile-head {
-      background: #fff;
-      width: 100%;
-      height: 56px;
-      z-index: 999;
-      position: relative;
-  }
-  #top-head.fixed .logo,
-  #top-head .logo {
-      position: absolute;
-      left: 13px;
-      top: 13px;
-      color: #333;
-      font-size: 26px;
-  }
-  .global-nav {
-      position: absolute;
-      /* 開いてないときは画面外に配置 */
-      top: -500px;
-      background: #333;
-      width: 100%;
-      text-align: center;
-      padding: 10px 0;
-      -webkit-transition: .5s ease-in-out;
-      -moz-transition: .5s ease-in-out;
-      transition: .5s ease-in-out;
-  }
-  .global-nav ul {
-      list-style: none;
-      position: static;
-      right: 0;
-      bottom: 0;
-      font-size: 14px;
-  }
-  .global-nav ul li {
-      float: none;
-      position: static;
-  }
-  .head .global-nav ul li a,
-  .head.fixed .global-nav ul li a {
-      width: 100%;
-      display: block;
-      color: #fff;
-      padding: 18px 0;
-  }
-  #nav-toggle {
-      display: block;
-  }
-  /* #nav-toggle 切り替えアニメーション */
-  .open #nav-toggle span:nth-child(1) {
-      top: 11px;
-      -webkit-transform: rotate(315deg);
-      -moz-transform: rotate(315deg);
-      transform: rotate(315deg);
-  }
-  .open #nav-toggle span:nth-child(2) {
-      width: 0;
-      left: 50%;
-  }
-  .open #nav-toggle span:nth-child(3) {
-      top: 11px;
-      -webkit-transform: rotate(-315deg);
-      -moz-transform: rotate(-315deg);
-      transform: rotate(-315deg);
-  }
-  /* #global-nav スライドアニメーション */
-  .open #global-nav {
-      /* #global-nav top + #mobile-head height */
-      -moz-transform: translateY(556px);
-      -webkit-transform: translateY(556px);
-      transform: translateY(556px);
+  .none {
+    display: none;
   }
 
+  .block {
+    display: block;
+  }
+
+
+  
   }
   
