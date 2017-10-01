@@ -6,7 +6,10 @@
             // width:640以下であればメニューをdisplaynoneに設定
             if(w <= 640) {
                 $(".header").addClass("none");
-                $("#top-head").removeClass("none");
+                $(".top-head").removeClass("none");
+            } else {
+                $(".header").removeClass("none");
+                $(".top-head").addClass("none");
             }
             });
     });
