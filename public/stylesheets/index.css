@@ -123,7 +123,7 @@ a {
 	text-decoration: none;
 }
 
-.none {
+.pc-none {
   display: none;
 }
 
@@ -141,16 +141,8 @@ a {
 
   /* mobileheaderのCSS */
 
-  /* .header {
+  .mobile-none {
     display: none;
-  } */
-
-  .none {
-    display: none;
-  }
-
-  .block {
-    display: block;
   }
 
 
