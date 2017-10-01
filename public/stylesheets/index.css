@@ -123,16 +123,8 @@ a {
 	text-decoration: none;
 }
 
-#mobile-head {
-  display: none;
-}
-
 .none {
   display: none;
-}
-
-.block {
-  display: block;
 }
 
 /* smartPhone */
@@ -149,17 +141,13 @@ a {
 
   /* mobileheaderのCSS */
 
-  .header {
-    display: none;
-  }
-
-  #top-head {
-    display: none;
-  }
-
-  /* .none {
+  /* .header {
     display: none;
   } */
+
+  .none {
+    display: none;
+  }
 
   .block {
     display: block;
