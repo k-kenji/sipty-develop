@@ -67,7 +67,8 @@ app.post('/webhook/', function (req, res) {
               continue
             }
             // console.log();
-            sendTextMessage(sender, text.substring(0, 200));
+            // sendTextMessage(sender, text.substring(0, 200));
+            anymessage(sender);
             continue
         }
         if (event.postback) {
@@ -138,10 +139,10 @@ function sendTextMessage(sender, text) {
     })
 }
 
-function howToUse(sender) { // siptyの説明
+function anymessage(sender) { // siptyの説明
   let messageData = {
     // startchatで表示されるメッセージ
-    text: "siptyはあなたがFacebookの友人に再会するのを手伝ってくれます。最近コンタクトできていない友人を探して教えてくれます！気になった人がいたらメッセージしてみよう！"
+    text: "「スタート」を入力すると、TOPに戻れます。"
   }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',

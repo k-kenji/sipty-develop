@@ -139,11 +139,39 @@ a {
     width: 100%;
   }
 
-  /* mobileheaderのCSS */
-
-  .mobile-none {
-    display: none;
+  .header {
+    width: 100%;
+    top: 0;
+    position: fixed;
+    margin-top: 0;
+    height: 56px;
+    z-index: 999;
+    position: relative;
   }
+
+  .global-nav {
+    position: absolute;
+    /* 開いてないときは画面外に配置 */
+    top: -500px;
+    background: #333;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+  }
+
+  #mobile-head {
+    background: #fff;
+    width: 100%;
+    height: 56px;
+    z-index: 999;
+    position: relative;
+}
+
+
+
 
 
   
