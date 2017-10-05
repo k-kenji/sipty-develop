@@ -35,16 +35,13 @@
    </script>
    <!-- PS HTML -->
    <!-- PS HTML 終了 -->
-    <header class="header mobile-none">
+    <header class="header">
           <div id="mobile-head">
-              <h1 class="logo">Logo</h1>
-              <div id="nav-toggle">
-                  <div>
+              <a class="menu-trigger" href="#">
                       <span></span>
                       <span></span>
                       <span></span>
-                  </div>
-              </div>
+              </a>
           </div>
           <nav id="TopMenuList" class="global-nav">
             <ul>
@@ -63,10 +60,10 @@
             </ul>
           </nav> <!-- TopMenuList -->
     </header>
-    <div class="container">
-      <div class="left-container">
-        <h1 class="logo">sipty</h1>
-        <div class="description">
+    <div id="container" class="container">
+      <div id="left-container" class="left-container">
+        <h1 id="logo" class="logo">sipty</h1>
+        <div id="description">
           siptyはあなたの代わりにFacebookの友達を自動で誘ってくれます。すでにつながっている友達だからこそ、誘う必要もないし、チャットをする必要もない。あなたがやることは、予定をチェックするだけ。
         </div>
         <div class="fb-messengermessageus"
@@ -76,8 +73,8 @@
             size="xlarge">
         </div>
       </div> <!-- left-container -->
-      <div class="right-container">
-        <div class="device">
+      <div id="right-container" class="right-container">
+        <div id="device" class="device">
           <img src="/public/images/sipty_iphone7jetblack_portrait.png" alt="" class="first-device">
         </div>
       </div> <!-- right-container -->

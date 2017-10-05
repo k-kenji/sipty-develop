@@ -4,176 +4,287 @@
 ヘッダーカラーオード：#207FBA;
 */
 
-@font-face {
-	font-family: 'donau';
-	src: local('donau'),url(font/donau/donau.otf);
-}
-
-html {
-  min-height: 100%;
-}
-
-body {
-  font-family: 'donau';
-  background:  #69B3E1;
-  color: #FFFFFF;
-}
-
-/* ---------------- header menu css -------------------- */
-.header {
-  background-color: #207FBA;
-}
-
-header #TopMenuList {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-header #TopMenuList ul {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: left;
-  justify-content: left;
-  list-style: none;
-  padding-left: 0px;
-  font-family: 'donau';
-}
-
-header #TopMenuList ul li {
-  font-size: 20px;
-}
-
-header #TopMenuList ul li a {
-  display: block;
-  padding: 16px 20px;
-  text-decoration: none;
-  font-family: 'donau';
-}
-
-header #TopMenuList ul li a:hover {
-  background-color: #196695;
-  curser: pointer;
-  color: #FFFFFF;
-}
-
-a {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-/* ----------------- header menu css ------------------ */
-
-/* ----------------- container css ------------------ */
-
-.container {
-   margin: 0 auto;
-	 padding-left: 0px;
-	 padding-right: 0px;
-   overflow: hidden;
-   max-width: 1000px;
-   display: -webkit-flex;
-   display: flex;
-   -webkit-justify-content: center;
-   justify-content: center;
-}
-
-.container .left-container {
-    max-width: 500px;
-    margin: 0 auto 150px;
-    -webkit-flex: 1;
-    flex: 1;
-}
-
-.container .right-container {
-    max-width: 500px;
-    margin: 0 auto 150px;
-    -webkit-flex: 1;
-    flex: 1;
-}
-
-.container .left-container h1 {
-  font-size: 65px;
-  text-align: center;
-  padding-top: 75px;
-  margin-bottom: 0px;
-  letter-spacing: 0.05em;
-}
-
-.description {
-  line-height: 1.9;
-  padding: 40px 20px 0 20px;
-  font-size: 20px;
-}
-
-.first-device {
-	width: 730px;
-	position: absolute;
-  top: 60px;
-  left: 599px;
-}
-
-/* FBMessageボタン */
-.fb-messengermessageus {
-	position: absolute !important;
-	top: 550px;
-	left: 405px;
-}
-}
-
-a {
-	text-decoration: none;
-}
-
-.pc-none {
-  display: none;
-}
-
-/* smartPhone */
-@media screen and (max-width: 640px) {
-  /*ここにスマホ用スタイルを記述*/
-
+@media screen and (min-width : 768px) {
+  
+  @font-face {
+    font-family: 'donau';
+    src: local('donau'),url(font/donau/donau.otf);
+  }
+  
+  html {
+    min-height: 100%;
+  }
+  
   body {
     font-family: 'donau';
     background:  #69B3E1;
     color: #FFFFFF;
-    min-height: 100%;
-    width: 100%;
   }
-
-  .header {
-    width: 100%;
-    top: 0;
-    position: fixed;
-    margin-top: 0;
-    height: 56px;
-    z-index: 999;
-    position: relative;
-  }
-
-  .global-nav {
-    position: absolute;
-    /* 開いてないときは画面外に配置 */
-    top: -500px;
-    background: #333;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
-  }
-
-  #mobile-head {
-    background: #fff;
-    width: 100%;
-    height: 56px;
-    z-index: 999;
-    position: relative;
-}
-
-
-
-
-
   
+  /* ---------------- header menu css -------------------- */
+  .header {
+    background-color: #207FBA;
   }
+  
+  header #TopMenuList {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  header #TopMenuList ul {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: left;
+    justify-content: left;
+    list-style: none;
+    padding-left: 0px;
+    font-family: 'donau';
+  }
+  
+  header #TopMenuList ul li {
+    font-size: 20px;
+  }
+  
+  header #TopMenuList ul li a {
+    display: block;
+    padding: 16px 20px;
+    text-decoration: none;
+    font-family: 'donau';
+  }
+  
+  header #TopMenuList ul li a:hover {
+    background-color: #196695;
+    curser: pointer;
+    color: #FFFFFF;
+  }
+  
+  a {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+  /* ----------------- header menu css ------------------ */
+  
+  /* ----------------- container css ------------------ */
+  
+  .container {
+     margin: 0 auto;
+     padding-left: 0px;
+     padding-right: 0px;
+     overflow: hidden;
+     max-width: 1000px;
+     display: -webkit-flex;
+     display: flex;
+     -webkit-justify-content: center;
+     justify-content: center;
+  }
+  
+  .container .left-container {
+      max-width: 500px;
+      margin: 0 auto 150px;
+      -webkit-flex: 1;
+      flex: 1;
+  }
+  
+  .container .right-container {
+      max-width: 500px;
+      margin: 0 auto 150px;
+      -webkit-flex: 1;
+      flex: 1;
+  }
+  
+  .container .left-container h1 {
+    font-size: 65px;
+    text-align: center;
+    padding-top: 75px;
+    margin-bottom: 0px;
+    letter-spacing: 0.05em;
+  }
+  
+  .description {
+    line-height: 1.9;
+    padding: 40px 20px 0 20px;
+    font-size: 20px;
+  }
+  
+  .first-device {
+    width: 730px;
+    position: absolute;
+    top: 60px;
+    left: 599px;
+  }
+  
+  /* FBMessageボタン */
+  .fb-messengermessageus {
+    position: absolute !important;
+    top: 550px;
+    left: 405px;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .pc-none {
+    display: none;
+  }
+  
+  h1 #logo {
+    position: absolute !important;
+    top: -12px;
+    left: 20px;
+    z-index: 1100;
+  }
+  }
+  
+  /* smartPhone */
+  @media screen and (max-width: 640px) {
+    /*ここにスマホ用スタイルを記述*/
+  
+    body {
+      font-family: 'donau';
+      background:  #69B3E1;
+      color: #FFFFFF;
+      min-height: 100%;
+      width: 100%;
+      margin: 0;
+    }
+  
+    .header {
+      width: 100%;
+      top: 0;
+      margin-top: 0;
+      height: 56px;
+      z-index: 999;
+      position: relative;
+    }
+  
+    #mobile-head {
+      position: relative;
+      width: 100%;
+      z-index: 999;
+    }
+  
+    .global-nav {
+      position: absolute;
+      /* 開いてないときは画面外に配置 */
+      top: -500px;
+      background: black;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      -webkit-transition: .5s ease-in-out;
+      -moz-transition: .5s ease-in-out;
+      transition: .5s ease-in-out;
+    }
+  
+    .global-nav ul {
+      list-style: none;
+      position: static;
+      right: 0;
+      bottom: 0;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+  }
+  
+  .global-nav ul li {
+    padding: 8px;
+  }
+  
+    #mobile-head {
+      background: #207FBA;
+      width: 100%;
+      height: 66px;
+      z-index: 999;
+      position: relative;
+  }
+  
+  /* ハンバーガーボタン */
+  .menu-trigger,
+  .menu-trigger span {
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
+  }
+  .menu-trigger {
+    position: absolute;
+    top: 10px;
+    left: 315px;
+    width: 50px;
+    height: 44px;
+  }
+  .menu-trigger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  .menu-trigger span:nth-of-type(1) {
+    top: 4px;
+  }
+  .menu-trigger span:nth-of-type(2) {
+    top: 20px;
+  }
+  .menu-trigger span:nth-of-type(3) {
+    bottom: 0;
+  }
+  
+  .open {
+    /* #global-nav top + #mobile-head height */
+    -moz-transform: translateY(556px);
+    -webkit-transform: translateY(556px);
+    transform: translateY(556px);
+  }
+  
+  /* ハンバーガーメニュー　エフェクション */
+  .menu-trigger.active span:nth-of-type(1) {
+    -webkit-transform: translateY(20px) rotate(-45deg);
+    transform: translateY(20px) rotate(-45deg);
+  }
+  .menu-trigger.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+  .menu-trigger.active span:nth-of-type(3) {
+    -webkit-transform: translateY(-20px) rotate(45deg);
+    transform: translateY(-20px) rotate(45deg);
+  }
+  
+  .first-device {
+    width: 600px;
+    position: absolute;
+    top: 340px;
+    left: -110px;
+  }
+  
+  .container .left-container {
+    /* width: 100%; */
+    padding: 30px;
+    font-size: 19px;
+    line-height: 40px;
+  }
+  
+  .description {
+   padding: 15px;
+   font-size: 20px;
+   line-height: 1.9;
+  }
+  
+  h1 {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    z-index: 1100;
+  }
+  
+  
+  
+  
+  
+  
+  
+    
+    }
+    
   
