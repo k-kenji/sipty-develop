@@ -101,9 +101,11 @@
   }
   
   .description {
-    line-height: 1.9;
-    padding: 40px 20px 0 20px;
+    width: 399px;
     font-size: 20px;
+    line-height: 40px;
+    margin: 0 auto;
+    padding-top: 40px;
   }
   
   .first-device {
@@ -231,6 +233,7 @@
     bottom: -3px;
   }
   
+  /* ハンバーガークリック時にopenクラスがが付与されてメニューメニューかか開く */
   .open {
     /* #global-nav top + #mobile-head height */
     -moz-transform: translateY(556px);
