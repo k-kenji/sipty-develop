@@ -100,7 +100,7 @@
     letter-spacing: 0.05em;
   }
   
-  .description {
+  #description {
     width: 399px;
     font-size: 20px;
     line-height: 40px;
