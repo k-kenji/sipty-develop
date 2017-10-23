@@ -8,7 +8,7 @@ const firebase = require("firebase");
 
 // Initialize Firebase
  var config = {
-   apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0",
+   apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0", // heroku環境変数に設定
    authDomain: "sipty-f9d06.firebaseapp.com",
    databaseURL: "https://sipty-f9d06.firebaseio.com",
    projectId: "sipty-f9d06",
@@ -69,7 +69,7 @@ app.post('/webhook/', function (req, res) {
             // console.log();
             // sendTextMessage(sender, text.substring(0, 200));
             anymessage(sender);
-            continue
+            continue // else文でif文の後続にする
         }
         if (event.postback) {
             let text = JSON.stringify(event.postback)
@@ -87,7 +87,7 @@ app.post('/webhook/', function (req, res) {
               continue
             } else if(event.postback.payload === "more") {
                 recommendfirstuser(sender);
-                continue
+                continue // ocntinue削除
             }
             continue
         }
