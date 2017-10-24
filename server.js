@@ -61,15 +61,14 @@ app.post('/webhook/', function (req, res) {
             if (text === 'Generic'){
                 console.log("welcome to chatbot")
                 sendGenericMessage(sender)
-                continue
+                // continue
             } else if(text === "スタート") {
               firstLoginMessage(sender);
-              continue
+            //   continue
+            } else {
+                anymessage(sender);
             }
-            // console.log();
-            // sendTextMessage(sender, text.substring(0, 200));
-            anymessage(sender);
-            continue // else文でif文の後続にする
+            continue
         }
         if (event.postback) {
             let text = JSON.stringify(event.postback)
@@ -78,16 +77,16 @@ app.post('/webhook/', function (req, res) {
             if(event.postback.payload === "GET_STARTED_PAYLOAD") {
               firstLoginMessage(sender); // この関数のあとでpromiseを実行
               console.log("psotbackまで到達");
-              continue
+            //   continue
             } else if (event.postback.payload === "help") {
               startSipty(sender);
-              continue
+            //   continue
             } else if (event.postback.payload === "usesipty") {
               firstQuick(sender);
-              continue
+            //   continue
             } else if(event.postback.payload === "more") {
                 recommendfirstuser(sender);
-                continue // ocntinue削除
+                // continue
             }
             continue
         }
@@ -98,15 +97,15 @@ app.post('/webhook/', function (req, res) {
           if(event.message.quick_reply.payload === "fbutton") {
             findTextMessage(sender);
             recommendfirstuser(sender);
-            continue
+            // continue
           } else if(event.message.quick_reply.payload === "sbutton") {
             findTextMessage(sender);
             recommendfirstuser(sender);
-            continue
+            // continue
           } else if(event.message.quick_reply.payload === "tbutton") {
             findTextMessage(sender);
             recommendfirstuser(sender);
-            continue
+            // continue
           }
           continue
         }
