@@ -115,7 +115,7 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.FB_PAGE_ACCESS_TOKEN
 // APIkeyを環境変数に格納する
-const token = facebook_token; // 環境変数からアクセストークンを代入
+const token = MY_VERIFY_TOKEN; // 環境変数からアクセストークンを代入
 console.log(token);
 
 function sendTextMessage(sender, text) {
