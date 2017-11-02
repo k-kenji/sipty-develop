@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 const firebase = require("firebase");
-const myenv = require('dotenv').config(); // envを読み込み
+require('dotenv').config(); // envを読み込み
 
 console.log(myenv);
 
