@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 const firebase = require("firebase");
+import 'dotenv.config'; // 環境変数の読み込み
+const facebook_token = process.env.NODE_FACEBOOK_TOKEN_ENV;
 
 // Initialize Firebase
  var config = {
@@ -73,39 +75,35 @@ app.post('/webhook/', function (req, res) {
         if (event.postback) {
             let text = JSON.stringify(event.postback)
             console.log(event);
-            // sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
+
             if(event.postback.payload === "GET_STARTED_PAYLOAD") {
               firstLoginMessage(sender); // この関数のあとでpromiseを実行
               console.log("psotbackまで到達");
-            //   continue
             } else if (event.postback.payload === "help") {
               startSipty(sender);
-            //   continue
             } else if (event.postback.payload === "usesipty") {
               firstQuick(sender);
-            //   continue
+
             } else if(event.postback.payload === "more") {
                 recommendfirstuser(sender);
-                // continue
             }
             continue
         }
         if(event.message.quick_reply.payload) {
           console.log(event.message);
-          console.log("テスト");
-          // let text = JSON.stringify(event.message.quick_reply)
+
           if(event.message.quick_reply.payload === "fbutton") {
             findTextMessage(sender);
             recommendfirstuser(sender);
-            // continue
+       
           } else if(event.message.quick_reply.payload === "sbutton") {
             findTextMessage(sender);
             recommendfirstuser(sender);
-            // continue
+         
           } else if(event.message.quick_reply.payload === "tbutton") {
             findTextMessage(sender);
             recommendfirstuser(sender);
-            // continue
+       
           }
           continue
         }
@@ -116,7 +114,8 @@ app.post('/webhook/', function (req, res) {
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.FB_PAGE_ACCESS_TOKEN
-const token = "EAAHFsX2ZAN5kBADYhfaxYiGQA2nSzJviZBOXfRlCgI3SsmU8N36ZALJ4hZA78jioYjJvtq0C8QGHNyrPcpnsEl8grrCEseZCQQsOFuPbLmhzG7NyZCQTRsaLGQHTNN1PMGHWLalzJpNMxDlpufL57tZAJ0b3n81xS2yMwoFt0bX3MOuJY4IEkPZA"
+// APIkeyを環境変数に格納する
+const token = facebook_token; // 環境変数からアクセストークンを代入
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
@@ -138,9 +137,9 @@ function sendTextMessage(sender, text) {
     })
 }
 
-function anymessage(sender) { // siptyの説明
+function anymessage(sender) { 
   let messageData = {
-    // startchatで表示されるメッセージ
+    // startで表示されるメッセージ
     text: "「スタート」を入力すると、TOPに戻れます。"
   }
   request({
