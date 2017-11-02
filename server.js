@@ -5,8 +5,7 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 const firebase = require("firebase");
-import 'dotenv.config'; // 環境変数の読み込み
-const facebook_token = process.env.NODE_FACEBOOK_TOKEN_ENV;
+
 
 // Initialize Firebase
  var config = {
