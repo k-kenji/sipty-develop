@@ -116,6 +116,7 @@ app.post('/webhook/', function (req, res) {
 // const token = process.env.FB_PAGE_ACCESS_TOKEN
 // APIkeyを環境変数に格納する
 const token = facebook_token; // 環境変数からアクセストークンを代入
+console.log(token);
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
