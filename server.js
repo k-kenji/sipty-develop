@@ -82,6 +82,7 @@ app.post('/webhook/', function (req, res) {
               firstLoginMessage(sender); // この関数のあとでpromiseを実行
               console.log("psotbackまで到達");
               console.log(token);
+              console.log(ENV.FACEBOOK_TOKEN);
             } else if (event.postback.payload === "help") {
               startSipty(sender);
             } else if (event.postback.payload === "usesipty") {
