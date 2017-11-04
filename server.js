@@ -5,8 +5,11 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 const firebase = require("firebase");
+const helmet = require('helmet');
 const token = process.env.FACEBOOK_TOKEN; // 環境変数からアクセストークンを代入
-console.log(token);
+const session = require('express-session'); // Sessionモジュール
+const passport = require('passport'); // passportモジュール
+
 
 // Initialize Firebase
  var config = {
@@ -22,26 +25,72 @@ console.log(token);
  // Get a reference to the database service
   var database = firebase.database();
 
-app.set('port', (process.env.PORT || 5000))
+const FacebookStrategy = require('passport-facebook').Strategy;
+var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID; // facebook-app ID
+var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET; // facebook-app SECRET
+
+passport.serializeUser(function (user, done) {
+    done(null, user);
+  });
+  
+passport.deserializeUser(function (obj, done) {
+    done(null, obj);
+  });
+
+// facebookログイン処理
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "https://sipty-develop.herokuapp.com/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+      process.nextTick(function () {
+          return done(null, profile);
+      });
+  }
+));
+
+app.use(session({ secret: '101f272efbc55b83', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// 全体の設定
+app.set('port', (process.env.PORT || 5000));
 app.set('views', './views'); // テンプレートエンジンをEJSに設定
 app.set('view engine', 'ejs'); // テンプレートエンジンをEJSに設定
+app.use(helmet()); // X-Powered-By ヘッダの除去
 
 app.use(express.static(__dirname)); // 静的ファイルを公開
 
+// ルーティング設定
 app.use('/', require('./routes/index.js')); // ルーティング設定 → homeページ
 app.get('/login', require('./routes/login.js')); // ルーティング設定 → loginページ
 app.get('/privacy', require('./routes/privacy.js')); // ルーティング設定 → privacyページ
 
+// facebook ログイン処理
+app.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: ['user:email'] }),
+  function (req, res) {
+});
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+});
+
+
 // Process application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
 
 // Process application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // Index route
 app.get('/', function (req, res) {
 	res.send('テスト')
-})
+});
 
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
@@ -61,8 +110,8 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text && !event.message.quick_reply) { // ここにクイックメッセージが吸い込まれているから絵error
             let text = event.message.text
             if (text === 'Generic'){
-                console.log("welcome to chatbot")
-                sendGenericMessage(sender)
+                console.log("welcome to chatbot");
+                sendGenericMessage(sender);
                 // continue
             } else if(text === "スタート") {
               firstLoginMessage(sender);

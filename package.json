@@ -13,7 +13,9 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
+    "express-session": "^1.15.6",
     "firebase": "^4.3.0",
+    "helmet": "^3.9.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "request": "^2.81.0"
