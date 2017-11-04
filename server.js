@@ -70,7 +70,7 @@ app.get('/privacy', require('./routes/privacy.js')); // ルーティング設定
 
 // facebook ログイン処理
 app.get('/auth/facebook',
-  passport.authenticate('facebook', { scope: ['user:email'] }),
+  passport.authenticate('facebook', { scope: ['email'] }),
   function (req, res) {
 });
 
