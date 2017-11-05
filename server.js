@@ -30,7 +30,7 @@ var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID; // facebook-app ID
 var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET; // facebook-app SECRET
 
 passport.serializeUser(function (user, done) {
-    done(null, user);
+    done(null, user.id); // user.idでSessionに格納
   });
   
 passport.deserializeUser(function (obj, done) {
@@ -77,7 +77,8 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function (req, res) {
-    res.redirect('/');
+    // res.redirect('/');
+    console.log("facebookログイン終了");
 });
 
 
