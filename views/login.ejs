@@ -10,6 +10,13 @@
   <a href="/auth/facebook">Login with Facebook</a>
   <%= user %>
 
+  <% if (user === 'null' | user === 'undefine') { %>
+    <p><%= user %></p>
+    
+    <% } else { %}
+    <p>取得エラー</p>
+    <% } %>
+
 
 </body>
 </html>
