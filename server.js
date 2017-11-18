@@ -41,7 +41,8 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "https://sipty-develop.herokuapp.com/auth/facebook/callback"
+    callbackURL: "https://sipty-develop.herokuapp.com/auth/facebook/callback",
+    scope: ['email', 'user_friends', 'user_birthday', 'user_location']
   },
   function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
