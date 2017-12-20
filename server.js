@@ -11,23 +11,34 @@ const session = require('express-session'); // Sessionモジュール
 const passport = require('passport'); // passportモジュール
 
 
-// Initialize Firebase
- var config = {
-   apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0", // heroku環境変数に設定
-   authDomain: "sipty-f9d06.firebaseapp.com",
-   databaseURL: "https://sipty-f9d06.firebaseio.com",
-   projectId: "sipty-f9d06",
-   storageBucket: "",
-   messagingSenderId: "376113749242"
- };
- firebase.initializeApp(config);
+// MongoDB起動コマンド以下
+// mongod --dbpath=data
 
- // Get a reference to the database service
-  var database = firebase.database();
+// MongoDB
+// const mongod = require('mongodb');
+// const MongoClient = mongodb.MongoClient;
+// const assert = require('assert');
+// const url = 'mongodb://localhost:27017/models';
+
+
+var MongoClient = require("mongodb").MongoClient;
+
+// 接続文字列
+var url = "mongodb://localhost:27017/models";
+
+// MongoDB へ 接続
+MongoClient.connect(url, (error, db) => {
+   // 接続メッセージを表示
+   console.log("MongoDB へ 接続中...");
+
+   // MongoDB への 接続 を 切断
+   db.close();
+});
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID; // facebook-app ID
 var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET; // facebook-app SECRET
+console.log(FACEBOOK_APP_ID)
 
 passport.serializeUser(function (user, done) {
     done(null, user.id); // user.idでSessionに格納
@@ -46,7 +57,7 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
-          console.log(profile);
+          console.log("テスト3" + profile);
           return done(null, profile);
       });
   }
