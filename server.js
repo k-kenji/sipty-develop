@@ -11,29 +11,29 @@ const session = require('express-session'); // Sessionモジュール
 const passport = require('passport'); // passportモジュール
 
 
-// MongoDB起動コマンド以下
-// mongod --dbpath=data
+// // MongoDB起動コマンド以下
+// // mongod --dbpath=data
 
-// MongoDB
-// const mongod = require('mongodb');
-// const MongoClient = mongodb.MongoClient;
-// const assert = require('assert');
-// const url = 'mongodb://localhost:27017/models';
+// // MongoDB
+// // const mongod = require('mongodb');
+// // const MongoClient = mongodb.MongoClient;
+// // const assert = require('assert');
+// // const url = 'mongodb://localhost:27017/models';
 
 
-var MongoClient = require("mongodb").MongoClient;
+// var MongoClient = require("mongodb").MongoClient;
 
-// 接続文字列
-var url = "mongodb://localhost:27017/models";
+// // 接続文字列
+// var url = "mongodb://localhost:27017/models";
 
-// MongoDB へ 接続
-MongoClient.connect(url, (error, db) => {
-   // 接続メッセージを表示
-   console.log("MongoDB へ 接続中...");
+// // MongoDB へ 接続
+// MongoClient.connect(url, (error, db) => {
+//    // 接続メッセージを表示
+//    console.log("MongoDB へ 接続中...");
 
-   // MongoDB への 接続 を 切断
-   db.close();
-});
+//    // MongoDB への 接続 を 切断
+//    db.close();
+// });
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID; // facebook-app ID
