@@ -93,7 +93,7 @@ app.get('/handleAuth', function(req, res){
     // store this access_token in a global variable called accessToken
         accessToken = result.access_token;
     // After getting the access_token redirect to the '/' route 
-        res.redirect('/');
+        res.redirect('/', require('./routes/index.js'));
     });
 })
 
