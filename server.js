@@ -35,6 +35,17 @@ const passport = require('passport'); // passportモジュール
 //    db.close();
 // });
 
+// instagram API ////////////////////////////////////////////
+
+var in_client_id = 'bd09e6fcee0441479524be642f909d9b',
+in_client_secret = 'e3cdb0e651fc48a3b46b7c9745eee966',
+in_redirect_uri = 'https://sipty-develop.herokuapp.com/auth',
+in_auth_url = 'https://api.instagram.com/oauth/authorize/?client_id='
+              + in_client_id + '&redirect_uri='
+              + in_redirect_uri + '&response_type=code';
+
+// //////////////////////////////////////////////////////////
+
 const FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID; // facebook-app ID
 var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET; // facebook-app SECRET
@@ -57,7 +68,8 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
-        //   console.log("テスト3" + profile);
+        //   console.log("テスト3" + profile); // ここでユーザーIDなどを取得可能
+        //  profileから取得したデータをデータベースに挿入する
           return done(null, profile);
       });
   }
@@ -92,6 +104,11 @@ app.get('/auth/facebook/callback',
   function (req, res) {
     res.redirect('/');
     console.log("facebookログイン終了");
+});
+
+// instagram API auth
+app.get('/auth', function (req, res) {
+	res.send(req.query.code);
 });
 
 
