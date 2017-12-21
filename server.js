@@ -108,7 +108,8 @@ app.get('/auth/facebook/callback',
 
 // instagram API auth
 app.get('/auth', function (req, res) {
-	res.send(req.query.code);
+    console.log(res);
+    res.redirect('/');
 });
 
 
