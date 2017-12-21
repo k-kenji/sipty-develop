@@ -10,6 +10,7 @@ const token = process.env.FACEBOOK_TOKEN; // 環境変数からアクセスト�
 const session = require('express-session'); // Sessionモジュール
 const passport = require('passport'); // passportモジュール
 const ig = require('instagram-node').instagram();
+const accesstoken;
 
 
 // instagram
@@ -92,7 +93,7 @@ app.get('/handleAuth', function(req, res){
         if(err) res.send( err );
     // store this access_token in a global variable called accessToken
         console.log("結果2" + result.access_token);
-        accessToken = result.access_token;
+        accesstoken = result.access_token;
     // After getting the access_token redirect to the '/' route 
         res.redirect('/');
     console.log("instagramログイン終了");
