@@ -9,31 +9,17 @@ const helmet = require('helmet');
 const token = process.env.FACEBOOK_TOKEN; // 環境変数からアクセストークンを代入
 const session = require('express-session'); // Sessionモジュール
 const passport = require('passport'); // passportモジュール
+const ig = require('instagram-node').instagram();
 
 
-// // MongoDB起動コマンド以下
-// // mongod --dbpath=data
+// instagram
+ig.use({
+    client_id: 'bd09e6fcee0441479524be642f909d9b',
+    client_secret: 'e3cdb0e651fc48a3b46b7c9745eee966'
+});
 
-// // MongoDB
-// // const mongod = require('mongodb');
-// // const MongoClient = mongodb.MongoClient;
-// // const assert = require('assert');
-// // const url = 'mongodb://localhost:27017/models';
-
-
-// var MongoClient = require("mongodb").MongoClient;
-
-// // 接続文字列
-// var url = "mongodb://localhost:27017/models";
-
-// // MongoDB へ 接続
-// MongoClient.connect(url, (error, db) => {
-//    // 接続メッセージを表示
-//    console.log("MongoDB へ 接続中...");
-
-//    // MongoDB への 接続 を 切断
-//    db.close();
-// });
+//the redirect uri we set when registering our application
+var redirectUri = 'https://sipty-develop.herokuapp.com/handleAuth';
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID; // facebook-app ID
@@ -93,6 +79,24 @@ app.get('/auth/facebook/callback',
     res.redirect('/');
     console.log("facebookログイン終了");
 });
+
+// instagramログインの処理
+app.get('/authorize', function(req, res){
+    // set the scope of our application to be able to access likes and public content
+    res.redirect(ig.get_authorization_url(redirectUri, { scope : ['public_content','likes']}) );
+});
+
+app.get('/handleAuth', function(req, res){
+    //retrieves the code that was passed along as a query to the '/handleAuth' route and uses this code to construct an access token
+    ig.authorize_user(req.query.code, redirectUri, function(err, result){
+        if(err) res.send( err );
+    // store this access_token in a global variable called accessToken
+        accessToken = result.access_token;
+    // After getting the access_token redirect to the '/' route 
+        res.redirect('/');
+    });
+})
+
 
 
 // Process application/x-www-form-urlencoded
