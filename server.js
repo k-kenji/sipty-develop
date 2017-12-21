@@ -91,11 +91,8 @@ app.get('/handleAuth', function(req, res){
     ig.authorize_user(req.query.code, redirectUri, function(err, result){
         if(err) res.send( err );
     // store this access_token in a global variable called accessToken
-        console.log("結果1" + result);
-        console.log("結果2" + result.access_token);
-        // accessToken = result.access_token;
-    // After getting the access_token redirect to the '/' route 
-        res.redirect('/', require('./routes/index.js'));
+    console.log('Yay! Access token is ' + result.access_token);
+    res.send('You made it!!');
     });
 })
 
