@@ -12,6 +12,17 @@ const passport = require('passport'); // passportモジュール
 const ig = require('instagram-node').instagram();
 var accesstoken;
 
+// mongoDB接続
+const mongodb = require('mongodb')
+const MongoClient = mongodb.MongoClient
+const assert = require('assert')
+
+MongoClient.connect('mongodb://127.0.0.1:27017/testmydb', (err, db) => {
+    assert.equal(null, err)
+    console.log("Connected successfully to server")
+    db.close()
+})
+
 
 // instagram
 ig.use({
@@ -93,7 +104,7 @@ app.get('/handleAuth', function(req, res){
         if(err) res.send( err );
     // store this access_token in a global variable called accessToken
         console.log("結果2" + result.access_token);
-        accesstoken = result.access_token;
+        accesstoken = result.access_token; // アクセストークンをDBに保存する
     // After getting the access_token redirect to the '/' route 
         res.redirect('/');
     console.log("instagramログイン終了");
