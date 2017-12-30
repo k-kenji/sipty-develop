@@ -12,6 +12,9 @@ const passport = require('passport'); // passportモジュール
 const ig = require('instagram-node').instagram();
 var accesstoken;
 
+// mongo関連
+const model = require('model');
+const Post = model.Post;
 
 
 
@@ -617,30 +620,6 @@ function recommendfirstuser(sender) {
         }
     })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // spin spin sugar

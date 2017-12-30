@@ -1,5 +1,7 @@
+const MONGO_URL = process.env.MONGOLAB_URI;
+
 const mongoose = require('mongoose');
-const db = mongoose.connect('mongodb://localhost/firstapp');
+const db = mongoose.connect(MONGO_URL);
 
 function validator(v) {
   return v.length > 0;
