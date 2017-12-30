@@ -4,7 +4,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-const firebase = require("firebase");
 const helmet = require('helmet');
 const token = process.env.FACEBOOK_TOKEN; // 環境変数からアクセストークンを代入
 const session = require('express-session'); // Sessionモジュール
@@ -12,15 +11,18 @@ const passport = require('passport'); // passportモジュール
 const ig = require('instagram-node').instagram();
 var accesstoken;
 
-// mongo関連
-// const model = require('model');
-const MONGO_URL = process.env.MONGOLAB_URI;
+// firebase関連
+var firebase = require("firebase"); // firebaseモジュール読み込み
 
-var mongodb = require('mongodb');
-mongodb.MongoClient.connect(MONGO_URL, { server: { auto_reconnect: true } }, function (err, db) {
-    /* adventure! */
-});
-
+// Initialize Firebase
+// TODO: Replace with your project's customized code snippet
+var config = {
+    apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0",
+    authDomain: "sipty-f9d06.firebaseapp.com",
+    databaseURL: "https://sipty-f9d06.firebaseio.com",
+    storageBucket: "gs://sipty-f9d06.appspot.com",
+  };
+firebase.initializeApp(config);
 
 
 // instagram
