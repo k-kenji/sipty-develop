@@ -13,8 +13,13 @@ const ig = require('instagram-node').instagram();
 var accesstoken;
 
 // mongo関連
-const model = require('model');
-const Post = model.Post;
+// const model = require('model');
+const MONGO_URL = process.env.MONGOLAB_URI;
+
+var mongodb = require('mongodb');
+mongodb.MongoClient.connect(MONGO_URL, { server: { auto_reconnect: true } }, function (err, db) {
+    /* adventure! */
+});
 
 
 
