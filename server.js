@@ -120,7 +120,7 @@ app.get('/handleAuth', function(req, res){
         var user_id_list = [];
         user_id_list =  get_token.split(".") // カンマでユーザーidを分割
         for (var i = 0; i <= 2; i++) {
-            user_id =+ user_id_list[i];
+            user_id += user_id_list[i];
         }
         console.log("連結した結果" + user_id);
         accesstoken = result.access_token; // アクセストークンをDBに保存する
