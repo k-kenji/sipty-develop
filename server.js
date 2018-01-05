@@ -26,6 +26,14 @@ var config = {
   };
 firebase.initializeApp(config);
 
+// firebaseデータベースに接続 ここまででDB使う準備完了
+// Get a reference to the database service
+var database = firebase.database();
+
+// firebaseユーザーid作成の作成の一例
+// users配下に1というユーザーを作成して1に紐づくデータはsetValueで挿入
+// self.ref.child("users").child(1).setValue(["username": "wakaka", "email" : "abx@xyz.com"])
+
 
 // instagram
 ig.use({
@@ -107,11 +115,14 @@ app.get('/handleAuth', function(req, res){
         if(err) res.send( err );
     // store this access_token in a global variable called accessToken
         console.log("結果2" + result.access_token);
+        user_id = result.access_token; // ユーザーidを変数に格納
+        user_id_list = user_id.split(".") // カンマでユーザーidを分割
+        user_id = user_id_list[0] + user_id_list[1] + user_id_list[2];
+        console.log("連結した結果" + user_id);
         accesstoken = result.access_token; // アクセストークンをDBに保存する
     // After getting the access_token redirect to the '/' route 
         res.redirect('/');
     console.log("instagramログイン終了");
-    
     });
 })
 
