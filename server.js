@@ -115,14 +115,10 @@ app.get('/handleAuth', function(req, res){
         if(err) res.send( err );
     // store this access_token in a global variable called accessToken
         console.log("結果2" + result.access_token);
-        var user_id;
         var get_token = result.access_token; // ユーザーidを変数に格納
         var user_id_list = [];
         user_id_list =  get_token.split(".") // カンマでユーザーidを分割
-        console.log(user_id_list);
-        for (var i = 0; i <= 2; i++) {
-            user_id += user_id_list[i];
-        }
+        var user_id = user_id_list.join();
         console.log("連結した結果" + user_id);
         accesstoken = result.access_token; // アクセストークンをDBに保存する
     // After getting the access_token redirect to the '/' route 
