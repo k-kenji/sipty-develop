@@ -103,6 +103,42 @@ app.get('/auth/facebook/callback',
     console.log("facebookログイン終了");
 });
 
+//////////////////////////////////////////
+// Firebase関連の関数定義 - 開始
+//////////////////////////////////////////
+// ユーザーIDをusers配下に追加する処理
+function writeUserData(userId, name, email, imageUrl) {
+    firebase.database().ref('users/' + userId).set({
+      username: name,
+      email: email,
+      profile_picture : imageUrl
+    });
+  }
+
+// ユーザープロフィールAPIリクエスト
+function Insta_usr_profile(token) {
+    request.get({
+        url: 'https://api.instagram.com/v1/users/self',
+        qs: {access_token:token},
+        method: 'GET',
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        } else {
+            console.log(response);
+            console.log(body);
+        }
+
+    })
+}
+
+
+//////////////////////////////////////////
+// Firebase関連の関数定義 - 終了
+//////////////////////////////////////////
+
 // instagramログインの処理
 app.get('/authorize', function(req, res){
     // set the scope of our application to be able to access likes and public content
@@ -113,15 +149,14 @@ app.get('/handleAuth', function(req, res){
     //retrieves the code that was passed along as a query to the '/handleAuth' route and uses this code to construct an access token
     ig.authorize_user(req.query.code, redirectUri, function(err, result){
         if(err) res.send( err );
-    // store this access_token in a global variable called accessToken
-        console.log("結果2" + result.access_token);
-        var get_token = result.access_token; // ユーザーidを変数に格納
+        // store this access_token in a global variable called accessToken
+        var get_token = result.access_token; // アクセストークンを変数に格納
         var user_id_list = [];
-        user_id_list =  get_token.split(".") // カンマでユーザーidを分割
-        var user_id = user_id_list.join('');
-        console.log("連結した結果" + user_id);
-        accesstoken = result.access_token; // アクセストークンをDBに保存する
-    // After getting the access_token redirect to the '/' route 
+        user_id_list =  get_token.split(".") // カンマ区切りでユーザーidを分割
+        var user_id = user_id_list.join(''); // 配列の文字列を連結@ユーザーidとして利用
+        // After getting the access_token redirect to the '/' route 
+        // DBに保存する処理を以降に記述
+        Insta_usr_profile(get_token)
         res.redirect('/');
     console.log("instagramログイン終了");
     });
