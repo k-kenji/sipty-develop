@@ -119,6 +119,7 @@ app.get('/handleAuth', function(req, res){
         var get_token = result.access_token; // ユーザーidを変数に格納
         var user_id_list = [];
         user_id_list =  get_token.split(".") // カンマでユーザーidを分割
+        console.log(user_id_list);
         for (var i = 0; i <= 2; i++) {
             user_id += user_id_list[i];
         }
