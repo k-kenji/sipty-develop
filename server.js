@@ -13,11 +13,13 @@ var accesstoken;
 
 // firebase関連
 var firebase = require("firebase"); // firebaseモジュール読み込み
+// firebaseAPIkeyを変数に格納
+const FIREBASE_API_KEY = process.env.FIREBASE_API;
 
 // Initialize Firebase
 // TODO: Replace with your project's customized code snippet
 var config = {
-    apiKey: "AIzaSyDKV-VX16SgvqVVfn-UBXb5YOhaCc1JnU0",
+    apiKey: FIREBASE_API_KEY,
     authDomain: "sipty-f9d06.firebaseapp.com",
     databaseURL: "https://sipty-f9d06.firebaseio.com",
     storageBucket: "gs://sipty-f9d06.appspot.com",
