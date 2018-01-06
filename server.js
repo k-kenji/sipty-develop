@@ -9,7 +9,7 @@ const token = process.env.FACEBOOK_TOKEN; // 環境変数からアクセスト�
 const session = require('express-session'); // Sessionモジュール
 const passport = require('passport'); // passportモジュール
 const ig = require('instagram-node').instagram();
-const module_firebase = require('firebase.js');
+const module_firebase = require('./firebase.js');
 var accesstoken; // insta
 
 
