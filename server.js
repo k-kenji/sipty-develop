@@ -94,6 +94,13 @@ function writeUserData(userId, name, email, imageUrl) {
       profile_picture : imageUrl
     });
   }
+//////////////////////////////////////////
+// Firebase関連の関数定義 - 終了
+//////////////////////////////////////////
+
+//////////////////////////////////////////
+// Instagram関連の関数定義 - 開始
+//////////////////////////////////////////
 
 // ユーザープロフィールAPIリクエスト
 function Insta_usr_profile(token) {
@@ -107,16 +114,15 @@ function Insta_usr_profile(token) {
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         } else {
-            console.log(response);
             console.log(body);
+            // ここでreturn文を書く
         }
 
     })
 }
 
-
 //////////////////////////////////////////
-// Firebase関連の関数定義 - 終了
+// Instagram関連の関数定義 - 終了
 //////////////////////////////////////////
 
 // instagramログインの処理
