@@ -121,13 +121,8 @@ function Insta_usr_profile(token) {
             var ig_business = ig_obj.data.is_business; // ビジネスアカウント判定
             var ig_follows = ig_obj.data.counts.follows; // フォロー人数
             var ig_followers = ig_obj.data.counts.followed_by; // フォロワー人数
-            console.log(ig_id);
-            console.log(ig_username);
-            console.log(ig_fullname);
-            console.log(ig_business);
-            console.log(ig_follows);
-            console.log(ig_followers);
             // ここでreturn文を書く
+
         }
 
     })
@@ -157,6 +152,7 @@ app.get('/handleAuth', function(req, res){
         Insta_usr_profile(get_token)
         res.redirect('/');
     console.log("instagramログイン終了");
+    console.log(ig_username);
     });
 })
 
