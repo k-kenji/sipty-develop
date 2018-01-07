@@ -115,9 +115,18 @@ function Insta_usr_profile(token) {
             console.log('Error: ', response.body.error)
         } else {
             var ig_obj = JSON.parse(body); // 返却されたされたプロフィールjsonデータをオブジェクトに変換
-            // console.log(ig_obj);
-            console.log(ig_obj.data.id);
-            console.log(ig_obj.data.username);
+            var ig_id = ig_obj.data.id; // アカウントID
+            var ig_username = ig_obj.data.username; // ユーザー名
+            var ig_fullname = ig_obj.data.full_name; // フルネーム
+            var ig_business = ig_obj.data.is_business; // ビジネスアカウント判定
+            var ig_follows = ig_obj.data.counts.follows; // フォロー人数
+            var ig_followers = ig_obj.data.counts.followed_by; // フォロワー人数
+            console.log(ig_id);
+            console.log(ig_username);
+            console.log(ig_fullname);
+            console.log(ig_business);
+            console.log(ig_follows);
+            console.log(ig_followers);
             // ここでreturn文を書く
         }
 
