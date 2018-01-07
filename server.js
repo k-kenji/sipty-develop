@@ -114,7 +114,9 @@ function Insta_usr_profile(token) {
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         } else {
-            console.log(body);
+            var ig_obj = JSON.parse(body);
+            console.log(ig_obj);
+            console.log(ig_obj.data)
             // ここでreturn文を書く
         }
 
