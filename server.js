@@ -27,7 +27,6 @@ var redirectUri = 'https://sipty-develop.herokuapp.com/handleAuth';
 const FacebookStrategy = require('passport-facebook').Strategy;
 var FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID; // facebook-app ID
 var FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET; // facebook-app SECRET
-console.log(FACEBOOK_APP_ID)
 
 passport.serializeUser(function (user, done) {
     done(null, user.id); // user.idでSessionに格納
@@ -46,7 +45,6 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
-        //   console.log("テスト3" + profile);
           return done(null, profile);
       });
   }
@@ -87,11 +85,14 @@ app.get('/auth/facebook/callback',
 // Firebase関連の関数定義 - 開始
 //////////////////////////////////////////
 // ユーザーIDをusers配下に追加する処理
-function writeUserData(userId, name, email, imageUrl) {
+function writeUserData(userId, userName, fullName, Business, follow, followed) {
     firebase.database().ref('users/' + userId).set({
-      username: name,
-      email: email,
-      profile_picture : imageUrl
+      username: userName,
+      fullname: fullName,
+      business : Business,
+      follows : follow,
+      followedby : followed,
+      accesstoken : token
     });
   }
 //////////////////////////////////////////
@@ -102,7 +103,7 @@ function writeUserData(userId, name, email, imageUrl) {
 // Instagram関連の関数定義 - 開始
 //////////////////////////////////////////
 
-// ユーザープロフィールAPIリクエスト
+// ユーザープロフィールAPIリクエスト/DB保存url
 function Insta_usr_profile(token) {
     request.get({
         url: 'https://api.instagram.com/v1/users/self',
@@ -121,7 +122,8 @@ function Insta_usr_profile(token) {
             var ig_business = ig_obj.data.is_business; // ビジネスアカウント判定
             var ig_follows = ig_obj.data.counts.follows; // フォロー人数
             var ig_followers = ig_obj.data.counts.followed_by; // フォロワー人数
-            // ここでreturn文を書く
+            // 格納した変数をDBに保存する
+            
 
         }
 
@@ -152,7 +154,6 @@ app.get('/handleAuth', function(req, res){
         Insta_usr_profile(get_token)
         res.redirect('/');
     console.log("instagramログイン終了");
-    console.log(ig_username);
     });
 })
 
@@ -184,7 +185,14 @@ app.post('/webhook/', function (req, res) {
         let event = req.body.entry[0].messaging[i]
         console.log("event: ", event); // eventにはwebhookで受け取ったJSONデータ
         let sender = event.sender.id
-        if (event.message && event.message.text && !event.message.quick_reply) { // ここにクイックメッセージが吸い込まれているから絵error
+        MessengerExtensions.getUserID(function success(uids) {
+            // User ID was successfully obtained. 
+                var psid = uids.psid;
+                console.log(psid);
+          }, function error(err, errorMessage) {      
+            // Error handling code
+          }); 
+        if (event.message && event.message.text && !event.message.quick_reply) { // ここにクイックメッセージが吸い込まれているからerror
             let text = event.message.text
             if (text === 'Generic'){
                 console.log("welcome to chatbot");
