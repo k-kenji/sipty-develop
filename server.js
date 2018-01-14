@@ -185,13 +185,7 @@ app.post('/webhook/', function (req, res) {
         let event = req.body.entry[0].messaging[i]
         console.log("event: ", event); // eventにはwebhookで受け取ったJSONデータ
         let sender = event.sender.id
-        MessengerExtensions.getUserID(function success(uids) {
-            // User ID was successfully obtained. 
-                var psid = uids.psid;
-                console.log(psid);
-          }, function error(err, errorMessage) {      
-            // Error handling code
-          }); 
+        
         if (event.message && event.message.text && !event.message.quick_reply) { // ここにクイックメッセージが吸い込まれているからerror
             let text = event.message.text
             if (text === 'Generic'){
