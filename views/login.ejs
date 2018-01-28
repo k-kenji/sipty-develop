@@ -6,7 +6,29 @@
 </head>
 <body>
   <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
-
+  <script>
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+    window.extAsyncInit = function () {
+        var isSupported = MessengerExtensions.isInExtension(); 
+        alert(isSupported);
+        // the Messenger Extensions JS SDK is done loading
+        MessengerExtensions.getContext('498841083787161', 
+          function success(result){
+            alert("Success: "+result.psid);
+          },
+          function error(result){
+            alert(JSON.stringify(result));
+            alert("失敗");
+          }
+        );
+    };
+  </script>
   <a href="/authorize">Login with instagram</a>
   
 
