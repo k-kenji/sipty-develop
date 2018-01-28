@@ -123,8 +123,7 @@ function Insta_usr_profile(token) {
             var ig_follows = ig_obj.data.counts.follows; // フォロー人数
             var ig_followers = ig_obj.data.counts.followed_by; // フォロワー人数
             // 格納した変数をDBに保存する
-            
-
+            console.log(ig_id)
         }
 
     })
