@@ -361,8 +361,6 @@ function sendGenericMessage(sender) {
     })
 }
 
-// SPidをDBに保存する
-//
 function firstLoginMessage(sender) {
   let messageData = {
     "attachment":{
@@ -377,7 +375,7 @@ function firstLoginMessage(sender) {
             "default_action": {
               "type": "web_url",
               "url": "https://sipty-develop.herokuapp.com/login",
-              "messenger_extensions": false,
+              "messenger_extensions": true,
               "webview_height_ratio": "tall",
             },
             "buttons":[
