@@ -375,7 +375,7 @@ function firstLoginMessage(sender) {
             "default_action": {
               "type": "web_url",
               "url": "https://sipty-develop.herokuapp.com/login",
-              "messenger_extensions": TRUE,
+              "messenger_extensions": true,
               "webview_height_ratio": "tall",
             },
             "buttons":[
